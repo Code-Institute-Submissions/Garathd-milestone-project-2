@@ -1,0 +1,24 @@
+{
+    categories: [
+        {
+            "id": "business",
+            "name": "Business"
+        },
+        {
+            "id": "entertainment",
+            "name": "Entertainment"
+        },
+        {
+            "id": "health",
+            "name": "Health"
+        },
+        {
+            "id": "science",
+            "name": "Science"
+        },
+        {
+            "id": "sports",
+            "name": "Sports"
+        }
+    ]
+}

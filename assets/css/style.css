@@ -1,17 +1,35 @@
-.picture img{
-    width:100%;
-    float
+#sourceList {
+    margin: 2%;
 }
 
-.article-post{
-    margin:2%;
+.publisher-name, .published-time{
+    float:left;
 }
 
-.article-title{
-    font-size:24px;
+.published-time{
+    margin-left:5%;
+}
+
+.picture img {
+    width: 100%;
+    float: left;
+}
+
+.article-post {
+    margin: 2%;
+}
+
+.article-title {
+    font-size: 21px;
+    padding-top: 1%;
     font-weight: bold;
+    clear:both;
 }
 
-.article-description{
-    font-style:italic;
+.article-author {
+    margin-top: 2%;
+}
+
+.article-description {
+    font-style: italic;
 }

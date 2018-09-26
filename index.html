@@ -8,6 +8,8 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
+    <script src="assets/js/initialise.js"></script>
     <script src="assets/js/script.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -19,18 +21,20 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
+                <select id="sourceList"></select>
+            </div>
+            <div class="col-md-6">
                 <div class="searching">
                     <input type="text" name="search" value="" id="search" />
-                    <button type="submit" class="btn btn-positive" onclick="getArticles()">Search</button>
+                    <button id="search-button" type="submit" class="btn btn-positive" onclick="getArticles()">Search</button>
                 </div>
             </div>
         </div>
         <div class="row">
             <!-- Outer Row -->
             <div class="col-md-12">
-                <article id="result" class="article">
-                    
+                <article id="articles" class="article">
                 </article>
             </div>
             <!-- Close Outer Row -->
