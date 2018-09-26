@@ -17,7 +17,25 @@
 </head>
 
 <body>
-    <p>Running...</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="searching">
+                    <input type="text" name="search" value="" id="search" />
+                    <button type="submit" class="btn btn-positive" onclick="getArticles()">Search</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Outer Row -->
+            <div class="col-md-12">
+                <article id="result" class="article">
+                    
+                </article>
+            </div>
+            <!-- Close Outer Row -->
+        </div>
+    </div>
 </body>
 
 </html>

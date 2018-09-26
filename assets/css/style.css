@@ -1,3 +1,17 @@
-body{
-    background-color: black;
+.picture img{
+    width:100%;
+    float
+}
+
+.article-post{
+    margin:2%;
+}
+
+.article-title{
+    font-size:24px;
+    font-weight: bold;
+}
+
+.article-description{
+    font-style:italic;
 }
