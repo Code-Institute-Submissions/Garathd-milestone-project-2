@@ -12,6 +12,10 @@
             "name": "Health"
         },
         {
+            "id": "general",
+            "name": "General"
+        },
+        {
             "id": "science",
             "name": "Science"
         },
@@ -239,6 +243,59 @@
         {
             "id": "ve",
             "name": "Venuzuela"
+        }
+    ],
+    "languages": [{
+            "id": "ar",
+            "name": "Arabic"
+        },
+        {
+            "id": "de",
+            "name": "German"
+        },
+        {
+            "id": "en",
+            "name": "English"
+        },
+        {
+            "id": "es",
+            "name": "Spanish"
+        },
+        {
+            "id": "fr",
+            "name": "French"
+        },
+        {
+            "id": "he",
+            "name": "Hebrew"
+        },
+        {
+            "id": "it",
+            "name": "Italian"
+        },
+        {
+            "id": "nl",
+            "name": "Dutch"
+        },
+        {
+            "id": "no",
+            "name": "Norwegian"
+        },
+        {
+            "id": "pt",
+            "name": "Portuguese"
+        },
+        {
+            "id": "ru",
+            "name": "Russian"
+        },
+        {
+            "id": "se",
+            "name": "Sami"
+        },
+        {
+            "id": "zh",
+            "name": "Chinese"
         }
     ]
 }

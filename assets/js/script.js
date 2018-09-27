@@ -1,122 +1,99 @@
-/*global apiSource,apiKey*/
+/*global $, addPublisher, getPublisher, addHeadline, getHeadline, moment*/
 
-/*------------------------------------------------------------------------------------*/
-//Callback function
-function getData(sources, search, cb) {
 
-    var sources = sources;
+function getPublisherInfo() {
 
-    if (!sources) {
-        sources = "allSources";
-    }
+    var writeInfo = document.getElementById("output");
 
-    var query = search;
-    var category;
+    var releases = [];
 
-    var url = `${apiSource}`;
 
-    console.log("check sources: " + sources);
+    var params = new Array();
 
-    //Default Load News
-    if (sources == "allSources" && !query) {
+    var country = "ie";
+    var language = "en";
+    var category = "general";
+    var publisher;
+
+    params['country'] = country;
+    params['language'] = language;
+    params['category'] = category;
+
+
+    addPublisher(params, function(response) {
+        response.forEach(function(entry) {
         
-        //On Default the News feed searches for a random category
-        var randomTypes = ['business', 'entertainment', 'health', 'science', 'technology', 'sports'];
-        var random = randomTypes[Math.floor(Math.random() * randomTypes.length)];
-        
-        category = "top-headlines";
-        url += `${category}?country=gb&category=${random}&apiKey=${apiKey}`;
-        console.log("Check the default: " + url);
-    }
+        var publisherInfo = entry;
 
-    //Search for Everything
-    else if (sources == "allSources" && query) {
-        category = "everything";
-        url += `${category}?q=${query}&apiKey=${apiKey}`;
-        console.log("Check the url everything: " + url);
-    }
+            releases.push(`<div class="article-post">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="picture">
+                                            <p><strong>Name: </strong>${publisherInfo.name}</p>
+                                            <p><strong>Category: </strong>${publisherInfo.category}</p>
+                                            <p><strong>Language: </strong>${publisherInfo.language}</p>
+                                            <p><strong>Country: </strong>${publisherInfo.country}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="article-text">
+                                            <div class="article-publish">
+                                                <div class="article-publisher">
+                                                    <div class="publisher-name">
+                                                        <p><strong>Description:</strong> ${publisherInfo.description}</p>
+                                                        <p><strong>Date:</strong> ${publisherInfo.url}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`);
+            writeInfo.innerHTML = `${releases}`;
+        });
+    });
+};
 
-    //Search for Sources only
-    else if (sources != "allSources" && !query) {
-        category = "top-headlines";
-        url += `${category}?sources=${sources}&apiKey=${apiKey}`;
-        console.log("Check the url sources only: " + url);
-    }
 
-    //Specific Source with a Search Term
-    else if (sources != "allSources" && query) {
-        category = "top-headlines";
-        url += `${category}?sources=${sources}&q=${query}&apiKey=${apiKey}`;
-        console.log("Specific Source with a Search Term: " + url);
-    }
+function getHeadlineInfo() {
+    var writeInfo = document.getElementById("output");
 
+    var releases = [];
+
+    var params = new Array();
+
+    var country = "gb";
+    var category = "general";
+    // var q = "news";
+    // var sources;
 
 
+    params['country'] = country;
+    params['category'] = category;
+    // params['q'] = q;
 
-    var xhr = new XMLHttpRequest();
+    addHeadline(params, function(response) {
+        console.log("Check headline response: "+JSON.stringify(response));
+        response.forEach(function(entry) {
+            var formatDate = entry.publishedAt;
+            var responseDate = moment(formatDate).format('DD/MM/YYYY');
 
-    xhr.open("GET", url);
-    xhr.send();
+            var articleInfo = entry;
 
-    xhr.onreadystatechange = function() {
-
-        if (this.readyState == 4 && this.status == 200) {
-            cb(JSON.parse(this.responseText));
-        }
-    };
-
-}
-
-function getArticles() {
-
-    //Sets up the article element
-    var writeArticle = document.getElementById("articles");
-
-    var sources = document.getElementById('sourceList').value;
-    var search = document.getElementById('search').value;
-
-    console.log("sources: " + sources);
-
-    if (!search && sources == "allSources") {
-        alert("Please Enter Some Information");
-    }
-    else {
-        getData(sources, search, function(data) {
-            var articles;
-            console.log("Response: " + JSON.stringify(data));
-
-            //Checking data
-            if (!data.articles) {
-                articles = data.sources;
-            }
-            else {
-                articles = data.articles;
+            //Some Code Checks and Fixes
+            if (articleInfo.urlToImage == null) {
+                articleInfo.urlToImage = "assets/images/empty.png";
             }
 
-            var releases = [];
+            if (articleInfo.author == null) {
+                articleInfo.author = "Unknown Author";
+            }
 
-            //Check news articles exist
-            if (articles.length > 0) {
-                articles.forEach(function(entry) {
-                    var formatDate = entry.publishedAt;
-                    var responseDate = moment(formatDate).format('DD/MM/YYYY');
+            if (articleInfo.description == null) {
+                articleInfo.description = "Unknown Description";
+            }
 
-                    var articleInfo = entry;
-
-                    //Some Code Checks and Fixes
-                    if (articleInfo.urlToImage == null) {
-                        articleInfo.urlToImage = "assets/images/empty.png";
-                    }
-
-                    if (articleInfo.author == null) {
-                        articleInfo.author = "Unknown Author";
-                    }
-
-                    if (articleInfo.description == null) {
-                        articleInfo.description = "Unknown Description";
-                    }
-
-                    releases.push(`<div class="article-post">
+            releases.push(`<div class="article-post">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="picture">
@@ -142,27 +119,8 @@ function getArticles() {
                             </div>
                         </div>
                     </div>`);
-                });
-                writeArticle.innerHTML = `${releases}`;
-            }
-            else {
-                releases.push(`<div class="no-articles">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="message">
-                                    <h1 text-align="center">No Articles Found</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`);
-                writeArticle.innerHTML = `${releases}`;
-            }
-        })
-    }
-}
+        });
+        writeInfo.innerHTML = `${releases}`;
+    });
 
-//Initialise
-$(document).ready(function() {
-    getArticles();
-
-});
+};

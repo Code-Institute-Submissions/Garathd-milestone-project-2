@@ -10,6 +10,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
     <script src="assets/js/initialise.js"></script>
+    <script src="assets/js/publisher.js"></script>
+    <script src="assets/js/headlines.js"></script>
     <script src="assets/js/script.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -20,25 +22,24 @@
 
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <select id="sourceList"></select>
-            </div>
-            <div class="col-md-6">
-                <div class="searching">
-                    <input type="text" name="search" value="" id="search" />
-                    <button id="search-button" type="submit" class="btn btn-positive" onclick="getArticles()">Search</button>
+        <div id="searchBar">
+            <div class="row">
+                <div class="col-md-12">
+                    <button onclick="getPublisherInfo()">Publish</button>
+                    <button onclick="getHeadlineInfo()">Headline</button>
                 </div>
             </div>
         </div>
+
+        <!-- Output -->
         <div class="row">
-            <!-- Outer Row -->
-            <div class="col-md-12">
-                <article id="articles" class="article">
-                </article>
+            <div id="output">
+                
             </div>
-            <!-- Close Outer Row -->
         </div>
+        <!-- Close Output -->
+
+    </div>
     </div>
 </body>
 
