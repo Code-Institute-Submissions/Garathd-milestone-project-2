@@ -25,19 +25,21 @@
 <body>
     <div class="container">
 
-        <div id="navigation">
-            <div class="row">
-                <div class="col-md-3">
-                    <button id="prevButton" onclick="prev()" class="btn btn-primary">Previous</button>
+        <div id="navigation-wrapper">
+            <div id="navigation">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button id="prevButton" onclick="prev()" class="btn btn-primary">Previous</button>
+                    </div>
+                    <div class="col-md-3">
+                        <p id="pageNumber"></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p id="totalResultsInfo"></p>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="nextButton" onclick="next()" class="btn btn-primary">Next</button></div>
                 </div>
-                <div class="col-md-3">
-                    <p id="pageNumber"></p>
-                </div>
-                <div class="col-md-3">
-                    <p id="totalResultsInfo"></p>
-                </div>
-                <div class="col-md-3">
-                    <button id="nextButton" onclick="next()" class="btn btn-primary">Next</button></div>
             </div>
         </div>
 
@@ -63,7 +65,7 @@
                     <select id="menuSources"></select>
                 </div>
                 <div class="col-md-3">
-                    <input id="searchBoxHeadline" type="text" name="" />
+                    <input id="searchBoxHeadline" placeholder="Search Headlines" type="text" name="" />
                 </div>
                 <div class="col-md-1">
                     <button id="searchButtonHeadline" onclick="getHeadlineInfo()">Search</button>

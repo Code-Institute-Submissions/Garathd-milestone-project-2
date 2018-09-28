@@ -163,12 +163,12 @@ function getHeadlineInfo(args) {
                     articleInfo.urlToImage = "assets/images/empty.png";
                 }
 
-                if (articleInfo.author == null) {
-                    articleInfo.author = "Unknown Author";
+                if (articleInfo.description == null) {
+                    articleInfo.description = "No Description";
                 }
 
-                if (articleInfo.description == null) {
-                    articleInfo.description = "Unknown Description";
+                if (articleInfo.content == null) {
+                    articleInfo.content = "Read More";
                 }
 
                 releases.push(`<div class="article-post">
@@ -192,7 +192,7 @@ function getHeadlineInfo(args) {
                                     </div>
                                     <div class="article-title">${articleInfo.title}</div>
                                     <div class="article-description">${articleInfo.description}</div>
-                                    <div class="article-author"><strong>Author:</strong> ${articleInfo.author}</div>
+                                    <div class="article-content"><a href="${articleInfo.url}" target="_blank">${articleInfo.content}</a></div>
                                 </div>
                             </div>
                         </div>
@@ -309,6 +309,8 @@ function next() {
         currentPage++;
         currentPageSize = currentPageSize + 100;
 
+        getHeadlineInfo("navigation");
+
         page.innerHTML = "<strong>Page: </strong>" + currentPage;
         pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
 
@@ -322,7 +324,7 @@ function next() {
         }
     }
 
-    getHeadlineInfo("navigation");
+
 }
 
 $(document).ready(function() {

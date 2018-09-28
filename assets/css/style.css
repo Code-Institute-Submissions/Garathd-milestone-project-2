@@ -1,5 +1,9 @@
 /*menu bar*/
 
+#navigation-wrapper{
+    height: 50px;
+}
+
 #navigation {
     margin-bottom: 5%;
 }
@@ -53,16 +57,30 @@
 }
 
 .article-title {
-    font-size: 21px;
+    font-size: 20px;
     padding-top: 1%;
     font-weight: bold;
     clear: both;
 }
 
-.article-author {
-    margin-top: 2%;
+.article-description {
+    margin-top:1%;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
 }
 
-.article-description {
-    font-style: italic;
+.article-content{
+    margin-top:1%;
 }
+
+.article-content a{
+    color:blue;
+    font-weight: bold;
+}
+
+
+
+
+
+
