@@ -27,15 +27,31 @@
         <div id="searchBar">
             <div class="row">
                 <div class="col-md-12">
-                    <button onclick="getPublisherInfo()">Publishers</button>
-                    <button onclick="getHeadlineInfo()">Headlines</button>
-                    <button onclick="getEverythingInfo()">Everything</button>
+                    <!--<button onclick="getPublisherInfo()">Publishers</button>-->
+                    <button onclick="enableHeadline()">Headlines</button>
+                    <!--<button onclick="getEverythingInfo()">Everything</button>-->
                 </div>
             </div>
         </div>
 
         <div id="headlineSearch">
-
+            <div class="row">
+                <div class="col-md-3">
+                    <select id="menuCountry"></select>
+                </div>
+                <div class="col-md-2">
+                    <select id="menuCategory"></select>
+                </div>
+                <div class="col-md-3">
+                    <select id="menuSources"></select>
+                </div>
+                <div class="col-md-3">
+                    <input id="searchBoxHeadline" type="text" name="" />
+                </div>
+                <div class="col-md-1">
+                    <button id="searchButtonHeadline" onclick="getHeadlineInfo()">Search</button>
+                </div>
+            </div>
         </div>
 
         <!-- Output -->

@@ -1,5 +1,9 @@
 {
     "categories": [{
+            "id": "all",
+            "name": "All Categories"
+        },
+        {
             "id": "business",
             "name": "Business"
         },
@@ -28,7 +32,12 @@
             "name": "Sports"
         }
     ],
-    "countries": [{
+    "countries": [
+        {
+            "id": "all",
+            "name": "All Countries"
+        }, 
+        {
             "id": "ar",
             "name": "Argentina"
         },
@@ -245,7 +254,12 @@
             "name": "Venuzuela"
         }
     ],
-    "languages": [{
+    "languages": [ 
+        {
+            "id": "all",
+            "name": "All Languages"
+        }, 
+        {
             "id": "ar",
             "name": "Arabic"
         },

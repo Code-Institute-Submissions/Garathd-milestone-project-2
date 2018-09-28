@@ -87,3 +87,14 @@ function addPublisher(args, callback) {
 function getPublisher() {
     return publisherInfo;
 }
+
+/*Populate Sources Dropdown*/
+function populateSources(){
+    
+    var args;
+    addPublisher(args, function(response){
+        console.log("populate response");
+    });
+}
+
+

@@ -1,7 +1,15 @@
 /*global $, addPublisher, getPublisher, addHeadline, getHeadline, addThings moment*/
 
+var country;
+var category;
+var sources;
+
+// $("#menuCountry").change(function() {
+
+// });
 
 function getPublisherInfo() {
+
 
     var writeInfo = document.getElementById("output");
 
@@ -22,8 +30,8 @@ function getPublisherInfo() {
 
     addPublisher(params, function(response) {
         response.forEach(function(entry) {
-        
-        var publisherInfo = entry;
+
+            var publisherInfo = entry;
 
             releases.push(`<div class="article-post">
                                 <div class="row">
@@ -54,46 +62,68 @@ function getPublisherInfo() {
     });
 };
 
-
-function getHeadlineInfo() {
+function getHeadlineInfo(args) {
     var writeInfo = document.getElementById("output");
 
-    var releases = [];
-
-    var params = new Array();
-
-    var country = "gb";
-    var category = "general";
-    // var q = "news";
-    // var sources;
+    //Input Stuff
+    country = $("#menuCountry option:selected").attr("value");
+    category = $("#menuCategory option:selected").attr("value");
+    sources = $("#menuSources option:selected").attr("value");
+    var search = document.getElementById("searchBoxHeadline").value;
 
 
-    params['country'] = country;
-    params['category'] = category;
-    // params['q'] = q;
+    if (!args) {
+        if (country == "all" && category == "all" && sources == "all" && !search) {
+            alert("You must enter search data or at least choose a Country or Category or Source");
+        }
+        else if ((country != "all" || category != "all") && sources != "all") {
+            alert("You cannot use search with sources if category and country are specified");
+        }
+        else {
+            runNow();
+        }
+    }
+    else {
 
-    addHeadline(params, function(response) {
-        console.log("Check headline response: "+JSON.stringify(response));
-        response.forEach(function(entry) {
-            var formatDate = entry.publishedAt;
-            var responseDate = moment(formatDate).format('DD/MM/YYYY');
 
-            var articleInfo = entry;
+        runNow();
+    }
 
-            //Some Code Checks and Fixes
-            if (articleInfo.urlToImage == null) {
-                articleInfo.urlToImage = "assets/images/empty.png";
-            }
 
-            if (articleInfo.author == null) {
-                articleInfo.author = "Unknown Author";
-            }
 
-            if (articleInfo.description == null) {
-                articleInfo.description = "Unknown Description";
-            }
 
-            releases.push(`<div class="article-post">
+    function runNow() {
+        var releases = [];
+
+        var params = new Array();
+
+        params['country'] = country;
+        params['category'] = category;
+        params['sources'] = sources;
+        params['q'] = search;
+
+        addHeadline(params, function(response) {
+            console.log("Check headline response: " + JSON.stringify(response));
+            response.forEach(function(entry) {
+                var formatDate = entry.publishedAt;
+                var responseDate = moment(formatDate).format('DD/MM/YYYY');
+
+                var articleInfo = entry;
+
+                //Some Code Checks and Fixes
+                if (articleInfo.urlToImage == null) {
+                    articleInfo.urlToImage = "assets/images/empty.png";
+                }
+
+                if (articleInfo.author == null) {
+                    articleInfo.author = "Unknown Author";
+                }
+
+                if (articleInfo.description == null) {
+                    articleInfo.description = "Unknown Description";
+                }
+
+                releases.push(`<div class="article-post">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="picture">
@@ -119,10 +149,10 @@ function getHeadlineInfo() {
                             </div>
                         </div>
                     </div>`);
+            });
+            writeInfo.innerHTML = `${releases}`;
         });
-        writeInfo.innerHTML = `${releases}`;
-    });
-
+    }
 };
 
 
@@ -139,7 +169,7 @@ function getEverythingInfo() {
     var domains;
     var excludeDomains;
     var from;
-    
+
     var q = "news";
     // var sources;
 
@@ -149,7 +179,7 @@ function getEverythingInfo() {
     params['q'] = q;
 
     addThings(params, function(response) {
-        console.log("Check addThings response: "+JSON.stringify(response));
+        console.log("Check addThings response: " + JSON.stringify(response));
         response.forEach(function(entry) {
             var formatDate = entry.publishedAt;
             var responseDate = moment(formatDate).format('DD/MM/YYYY');
@@ -200,3 +230,24 @@ function getEverythingInfo() {
     });
 
 };
+
+$(document).ready(function() {
+
+    /*Populate Sources Dropdown*/
+    function populateSources() {
+
+        var sources = document.getElementById("menuSources");
+        var source = [];
+        source.push("<option id='menuSourceItem' selected value='all'>All Sources</option>");
+
+        var args = [];
+        addPublisher(args, function(response) {
+            response.forEach(function(entry) {
+                source.push(`<option id="menuSourceItem" value="${entry.id}">${entry.name}</option>`);
+                sources.innerHTML = `${source}`;
+            });
+        });
+    }
+    populateSources();
+    getHeadlineInfo("start");
+});

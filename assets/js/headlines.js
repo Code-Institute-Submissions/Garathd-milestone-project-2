@@ -37,25 +37,28 @@ function sendHeadlines(args, callback) {
         };
     }
 
-
     //This to check if no check have been selected
-    if (!args.country && !args.category && !args.q) {
-        console.log("No filter for Headlines");
+    if (!args.country && !args.category && !args.source && !args.q) {
 
-        url += `&apiKey=${apiKey}`;
+        url += `country=gb&apiKey=${apiKey}`;
         searchHeadline(url);
     }
 
     else {
 
-        if (args.country) {
+        if (args.country != "all" && args.country) {
             console.log("country exists");
             url += `country=${args.country}&`;
         }
 
-        if (args.category) {
+        if (args.category != "all" && args.category) {
             console.log("category exists");
             url += `category=${args.category}&`;
+        }
+
+        if (args.sources != "all" && args.sources) {
+            console.log("sources exists");
+            url += `sources=${args.sources}&`;
         }
 
         if (args.q) {
@@ -74,10 +77,11 @@ function addHeadline(args, callback) {
 
     console.log("headline country: " + args.country);
     console.log("headline category: " + args.category);
+    console.log("headline source: " + args.source);
     console.log("headline q: " + args.q);
 
     sendHeadlines(args, function(data) {
-        console.log("data: "+JSON.stringify(data));
+        console.log("data: " + JSON.stringify(data));
         var headline = data.articles;
         callback(headline);
         headlines.setHeadlineInfo(headline);
@@ -88,3 +92,7 @@ function addHeadline(args, callback) {
 function getHeadline() {
     return headlineInfo;
 }
+
+function enableHeadline() {
+    $("#headlineSearch").show();
+};
