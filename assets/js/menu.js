@@ -17,15 +17,8 @@ $(document).ready(function() {
 
         countryArray.forEach(function(entry) {
 
-            if (entry.id == "gb") {
-                countries.push(`<option selected id="menuCountryItem" value="${entry.id}">${entry.name}</option>`);
-                country.innerHTML = `${countries}`;
-            }
-            else {
-                countries.push(`<option id="menuCountryItem" value="${entry.id}">${entry.name}</option>`);
-                country.innerHTML = `${countries}`;
-            }
-
+            countries.push(`<option id="menuCountryItem" value="${entry.id}">${entry.name}</option>`);
+            country.innerHTML = `${countries}`;
         });
 
         categoryArray.forEach(function(entry) {

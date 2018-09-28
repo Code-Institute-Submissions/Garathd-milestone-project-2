@@ -3,10 +3,9 @@
 var country;
 var category;
 var sources;
-
-// $("#menuCountry").change(function() {
-
-// });
+var currentPage = 1;
+var currentPageSize = 100;
+var pageResult;
 
 function getPublisherInfo() {
 
@@ -63,7 +62,20 @@ function getPublisherInfo() {
 };
 
 function getHeadlineInfo(args) {
+
+    var page = document.getElementById("pageNumber");
+    var pageResults = document.getElementById("totalResultsInfo");
     var writeInfo = document.getElementById("output");
+
+
+    //Check if pagnation
+    if (args != "navigation") {
+        //Clear Fields
+        currentPage = 1;
+        // pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
+        page.innerHTML = "<strong>Page: </strong>" + currentPage;
+        /*End Clear Fields*/
+    }
 
     //Input Stuff
     country = $("#menuCountry option:selected").attr("value");
@@ -84,15 +96,17 @@ function getHeadlineInfo(args) {
         }
     }
     else {
-
-
         runNow();
     }
 
-
-
-
     function runNow() {
+
+        //Show Loading Screen and hide Navigation
+        $("#navigation").hide();
+        $("#totalResultsInfo").hide();
+        $("#pageNumber").hide();
+        $("#loading").show();
+
         var releases = [];
 
         var params = new Array();
@@ -101,10 +115,44 @@ function getHeadlineInfo(args) {
         params['category'] = category;
         params['sources'] = sources;
         params['q'] = search;
+        params['page'] = currentPage;
 
         addHeadline(params, function(response) {
-            console.log("Check headline response: " + JSON.stringify(response));
-            response.forEach(function(entry) {
+
+            var headlineParameters = response.articles;
+            pageResult = response.totalResults;
+
+            // page.innerHTML = "<strong>Page: </strong>" + currentPage;
+
+
+
+            if (!args) {
+                //Total Results for Pagnation    
+                if (currentPageSize > pageResult || pageResult <= 100) {
+                    currentPageSize = pageResult;
+                    pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
+                }
+                else if (pageResult >= 100) {
+                    currentPageSize = 100;
+                    pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
+                }
+                else if (currentPageSize < pageResult) {
+                    currentPageSize = pageResult;
+                    pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
+                }
+            }
+            else if (args) {
+                if (pageResult < currentPageSize) {
+                    currentPageSize = pageResult;
+                    pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
+                }
+            }
+            else {
+                pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
+            }
+
+
+            headlineParameters.forEach(function(entry) {
                 var formatDate = entry.publishedAt;
                 var responseDate = moment(formatDate).format('DD/MM/YYYY');
 
@@ -151,6 +199,10 @@ function getHeadlineInfo(args) {
                     </div>`);
             });
             writeInfo.innerHTML = `${releases}`;
+            $("#navigation").show();
+            $("#totalResultsInfo").show();
+            $("#pageNumber").show();
+            $("#loading").hide();
         });
     }
 };
@@ -165,11 +217,10 @@ function getEverythingInfo() {
 
     // var country = "gb";
     // var category = "general";
-    var sources; // Up to 20 allowed
-    var domains;
-    var excludeDomains;
-    var from;
-
+    // var sources; // Up to 20 allowed
+    // var domains;
+    // var excludeDomains;
+    // var from;
     var q = "news";
     // var sources;
 
@@ -230,6 +281,49 @@ function getEverythingInfo() {
     });
 
 };
+
+
+function prev() {
+    var pageResults = document.getElementById("totalResultsInfo");
+    var page = document.getElementById("pageNumber");
+
+    if (currentPage > 1) {
+        currentPage--;
+        currentPageSize = currentPageSize - 100;
+
+        page.innerHTML = "<strong>Page: </strong>" + currentPage;
+        pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
+
+        getHeadlineInfo("navigation");
+    }
+
+
+}
+
+function next() {
+
+    var pageResults = document.getElementById("totalResultsInfo");
+    var page = document.getElementById("pageNumber");
+
+    if ((pageResult / 100 > 1) && (pageResult > currentPageSize)) {
+        currentPage++;
+        currentPageSize = currentPageSize + 100;
+
+        page.innerHTML = "Page: " + currentPage;
+        pageResults.innerHTML = "Results: " + currentPageSize + " / " + pageResult;
+
+        if (pageResult - currentPageSize < 0) {
+
+            currentPageSize = pageResult;
+
+            page.innerHTML = "Page: " + currentPage;
+            pageResults.innerHTML = "Results: " + currentPageSize + " / " + pageResult;
+
+        }
+    }
+
+    getHeadlineInfo("navigation");
+}
 
 $(document).ready(function() {
 

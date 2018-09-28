@@ -19,5 +19,6 @@ function getMenuItems(callback) {
 $(document).ready(function() {
 
     //$("#headlineSearch").hide();
+    $("#loading").hide();
     
 });

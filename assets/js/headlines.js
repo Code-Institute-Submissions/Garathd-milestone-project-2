@@ -17,7 +17,7 @@ const headlines = {
 
 function sendHeadlines(args, callback) {
 
-    var url = `${apiSource}top-headlines?`;
+    var url = `${apiSource}top-headlines?pageSize=100&`;
     var args = args;
 
 
@@ -40,7 +40,7 @@ function sendHeadlines(args, callback) {
     //This to check if no check have been selected
     if (!args.country && !args.category && !args.source && !args.q) {
 
-        url += `country=gb&apiKey=${apiKey}`;
+        url += `&apiKey=${apiKey}`;
         searchHeadline(url);
     }
 
@@ -65,6 +65,9 @@ function sendHeadlines(args, callback) {
             console.log("q exists");
             url += `q=${args.q}&`;
         }
+        if(args.page > 1){
+            url += `page=${args.page}&`;
+        }
 
         url += `apiKey=${apiKey}`;
         searchHeadline(url);
@@ -82,7 +85,7 @@ function addHeadline(args, callback) {
 
     sendHeadlines(args, function(data) {
         console.log("data: " + JSON.stringify(data));
-        var headline = data.articles;
+        var headline = data;
         callback(headline);
         headlines.setHeadlineInfo(headline);
     })

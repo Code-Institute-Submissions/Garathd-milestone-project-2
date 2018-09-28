@@ -1,15 +1,46 @@
+/*menu bar*/
+
+#navigation {
+    margin-bottom: 5%;
+}
+
+#totalResultsInfo,
+#pageNumber {
+    text-align: center;
+}
+
+#nextButton {
+    float: right;
+}
+
+#prevButton {
+    float: left;
+}
+
+/*Loading bar*/
+
+#loading {
+    text-align: center;
+}
+
+#loading img {
+    margin: 0;
+}
+
 
 /*Article Stuff*/
+
 #sourceList {
     margin: 2%;
 }
 
-.publisher-name, .published-time{
-    float:left;
+.publisher-name,
+.published-time {
+    float: left;
 }
 
-.published-time{
-    margin-left:5%;
+.published-time {
+    margin-left: 5%;
 }
 
 .picture img {
@@ -25,7 +56,7 @@
     font-size: 21px;
     padding-top: 1%;
     font-weight: bold;
-    clear:both;
+    clear: both;
 }
 
 .article-author {
