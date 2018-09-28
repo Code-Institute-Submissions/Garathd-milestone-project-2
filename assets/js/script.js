@@ -309,8 +309,8 @@ function next() {
         currentPage++;
         currentPageSize = currentPageSize + 100;
 
-        page.innerHTML = "Page: " + currentPage;
-        pageResults.innerHTML = "Results: " + currentPageSize + " / " + pageResult;
+        page.innerHTML = "<strong>Page: </strong>" + currentPage;
+        pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
 
         if (pageResult - currentPageSize < 0) {
 
