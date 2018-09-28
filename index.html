@@ -10,8 +10,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js"></script>
     <script src="assets/js/initialise.js"></script>
+    <script src="assets/js/menu.js"></script>
     <script src="assets/js/publisher.js"></script>
     <script src="assets/js/headlines.js"></script>
+    <script src="assets/js/everything.js"></script>
     <script src="assets/js/script.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -25,16 +27,21 @@
         <div id="searchBar">
             <div class="row">
                 <div class="col-md-12">
-                    <button onclick="getPublisherInfo()">Publish</button>
-                    <button onclick="getHeadlineInfo()">Headline</button>
+                    <button onclick="getPublisherInfo()">Publishers</button>
+                    <button onclick="getHeadlineInfo()">Headlines</button>
+                    <button onclick="getEverythingInfo()">Everything</button>
                 </div>
             </div>
+        </div>
+
+        <div id="headlineSearch">
+
         </div>
 
         <!-- Output -->
         <div class="row">
             <div id="output">
-                
+
             </div>
         </div>
         <!-- Close Output -->
