@@ -10,7 +10,6 @@ var pageResultHeadline;
 
 function getHeadlineInfo(args) {
 
-    var page = document.getElementById("pageNumberHeadline");
     var pageResults = document.getElementById("totalResultsInfoHeadline");
     var writeInfo = document.getElementById("output");
 
@@ -19,8 +18,6 @@ function getHeadlineInfo(args) {
     if (args != "navigation") {
         //Clear Fields
         currentPageHeadline = 1;
-        // pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
-        page.innerHTML = "<strong>Page: </strong>" + currentPageHeadline;
         /*End Clear Fields*/
     }
 
@@ -49,9 +46,7 @@ function getHeadlineInfo(args) {
     function runNow() {
 
         //Show Loading Screen and hide Navigation
-        $("#navigationHeadline").hide();
-        $("#totalResultsInfoHeadline").hide();
-        $("#pageNumberHeadline").hide();
+        $("#headlineMenu").hide();
         $("#loading").show();
 
         var releases = [];
@@ -142,9 +137,7 @@ function getHeadlineInfo(args) {
                     </div>`);
             });
             writeInfo.innerHTML = releases.join('');
-            $("#navigationHeadline").show();
-            $("#totalResultsInfoHeadline").show();
-            $("#pageNumberHeadline").show();
+            $("#headlineMenu").show();
             $("#loading").hide();
         });
     }
@@ -152,13 +145,11 @@ function getHeadlineInfo(args) {
 
 function prevHeadline() {
     var pageResults = document.getElementById("totalResultsInfoHeadline");
-    var page = document.getElementById("pageNumberHeadline");
 
     if (currentPageHeadline > 1) {
         currentPageHeadline--;
         currentPageSizeHeadline = currentPageSizeHeadline - 100;
 
-        page.innerHTML = "<strong>Page: </strong>" + currentPageHeadline;
         pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeHeadline + " / " + pageResultHeadline;
 
         getHeadlineInfo("navigation");
@@ -168,7 +159,6 @@ function prevHeadline() {
 function nextHeadline() {
 
     var pageResults = document.getElementById("totalResultsInfoHeadline");
-    var page = document.getElementById("pageNumberHeadline");
 
     if ((pageResultHeadline / 100 > 1) && (pageResultHeadline > currentPageSizeHeadline)) {
         currentPageHeadline++;
@@ -176,7 +166,6 @@ function nextHeadline() {
 
         getHeadlineInfo("navigation");
 
-        page.innerHTML = "<strong>Page: </strong>" + currentPageHeadline;
         pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeHeadline + " / " + pageResultHeadline;
 
         if (pageResultHeadline - currentPageSizeHeadline < 0) {
@@ -190,6 +179,6 @@ function nextHeadline() {
     }
 }
 
-$(document).ready(function(){
-    getHeadlineInfo("start"); 
+$(document).ready(function() {
+    getHeadlineInfo("start");
 });

@@ -11,8 +11,7 @@ var pageResultSearch;
 
 
 function getEverythingInfo(args) {
-
-    var pageSearch = document.getElementById("pageNumberSearch");
+    
     var pgResults = document.getElementById("totalResultsInfoSearch");
     var writeInfo = document.getElementById("output");
 
@@ -20,8 +19,6 @@ function getEverythingInfo(args) {
     if (args != "navigation") {
         //Clear Fields
         currentPageSearch = 1;
-        // pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSize + " / " + pageResult;
-        pageSearch.innerHTML = "<strong>Page: </strong>" + currentPageSearch;
         /*End Clear Fields*/
     }
 
@@ -57,9 +54,7 @@ function getEverythingInfo(args) {
     function runNow() {
 
         //Show Loading Screen and hide Navigation
-        $("#navigationSearch").hide();
-        $("#totalResultsInfoSearch").hide();
-        $("#pageNumberSearch").hide();
+        $("#searchMenu").hide();
         $("#loading").show();
 
         var releases = [];
@@ -84,6 +79,9 @@ function getEverythingInfo(args) {
                 //Total Results for Pagnation    
                 if (currentPageSizeSearch > pageResultSearch || pageResultSearch <= 100) {
                     currentPageSizeSearch = pageResultSearch;
+                    
+                    var pageOf = 
+                    
                     pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
                 }
                 else if (pageResultSearch >= 100) {
@@ -158,9 +156,7 @@ function getEverythingInfo(args) {
             /*Ensures the Results are dispplayed*/
             pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
 
-            $("#navigationSearch").show();
-            $("#totalResultsInfoSearch").show();
-            $("#pageNumberSearch").show();
+            $("#searchMenu").show();
             $("#loading").hide();
         });
     }
@@ -168,13 +164,11 @@ function getEverythingInfo(args) {
 
 function prevSearch() {
     var pgResults = document.getElementById("totalResultsInfoSearch");
-    var pageSearch = document.getElementById("pageNumberSearch");
 
     if (currentPageSearch > 1) {
         currentPageSearch--;
         currentPageSizeSearch = currentPageSizeSearch - 100;
 
-        pageSearch.innerHTML = "<strong>Page: </strong>" + currentPageSearch;
         pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
 
         getEverythingInfo("navigation");
@@ -187,13 +181,11 @@ function nextSearch() {
 
 
     var pgResults = document.getElementById("totalResultsInfoSearch");
-    var pageSearch = document.getElementById("pageNumberSearch");
 
     if ((pageResultSearch / 100 > 1) && (pageResultSearch > currentPageSizeSearch)) {
         currentPageSearch++;
         currentPageSizeSearch = currentPageSizeSearch + 100;
 
-        pageSearch.innerHTML = "<strong>Page: </strong>" + currentPageSearch;
         pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
 
         getEverythingInfo("navigation");
@@ -202,7 +194,6 @@ function nextSearch() {
 
             currentPageSizeSearch = pageResultSearch;
 
-            pageSearch.innerHTML = "Page: " + currentPageSearch;
             pgResults.innerHTML = "Results: " + currentPageSizeSearch + " / " + pageResultSearch;
 
         }

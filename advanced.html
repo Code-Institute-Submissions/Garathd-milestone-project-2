@@ -26,11 +26,12 @@
 
 <body>
     <div class="container">
-
-        <div id="searchBar">
+        
+        <div class="title">
             <div class="row">
                 <div class="col-md-12">
-                    <button onclick="searchHeadline()">Search Headlines</button>
+                    <h1>Advanced Search</h1>
+                    <button class="btn btn-link" onclick="searchHeadline()">Search by Top Headlines</button>
                 </div>
             </div>
         </div>
@@ -39,17 +40,15 @@
             <!-- Navigation for Search Stuff -->
             <div id="navigationSearch">
                 <div class="row">
-                    <div class="col-md-3">
-                        <button id="prevButton" onclick="prevSearch()" class="btn btn-primary">Previous</button>
+
+                    <div class="col-md-12">
+                        <div class="navigation-buttons">
+                            <button onclick="prevSearch()" class="prevButton btn btn-primary">Previous</button>
+                            <button onclick="nextSearch()" class="nextButton btn btn-primary">Next</button>
+                        </div>
                     </div>
-                    <div class="col-md-3">
-                        <p id="pageNumberSearch"></p>
-                    </div>
-                    <div class="col-md-3">
+                    <div class="col-md-12">
                         <p id="totalResultsInfoSearch"></p>
-                    </div>
-                    <div class="col-md-3">
-                        <button id="nextButton" onclick="nextSearch()" class="btn btn-primary">Next</button>
                     </div>
                 </div>
             </div>
@@ -57,19 +56,19 @@
             <div id="advancedSearch">
                 <div class="row">
                     <div class="col-md-3">
-                        <select id="menuSourcesAdvanced"></select>
+                        <select class="form-control" id="menuSourcesAdvanced"></select>
                     </div>
                     <div class="col-md-3">
-                        <select id="menuLanguages"></select>
+                        <select class="form-control" id="menuLanguages"></select>
                     </div>
                     <div class="col-md-2">
-                        <select id="menuSortBy"></select>
+                        <select class="form-control" id="menuSortBy"></select>
                     </div>
                     <div class="col-md-2">
-                        <input id="adSearch" type="text" placeholder="Advanced Search" name="" />
+                        <input class="form-control" id="adSearch" type="text" placeholder="Advanced Search" name="" />
                     </div>
                     <div class="col-md-2">
-                        <button id="searchButtonAdvanced" onclick="getEverythingInfo()">Search</button>
+                        <button class="btn btn-info" id="searchButtonAdvanced" class="searchButton" onclick="getEverythingInfo()">Search</button>
                     </div>
                 </div>
             </div>
