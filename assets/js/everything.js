@@ -28,7 +28,7 @@ function sendThings(args, callback) {
 
     //Covers Menu Navigation
     else if (args.sources == undefined && args.language == undefined && args.sortBy == undefined && !args.q) {
-        url += `q=news&apiKey=${apiKey}`;
+        url += `&apiKey=${apiKey}`;
         searchEverything(url);
     }
 

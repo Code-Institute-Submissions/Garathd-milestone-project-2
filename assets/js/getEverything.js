@@ -31,6 +31,13 @@ function getEverythingInfo(args) {
     language = $("#menuLanguages option:selected").attr("value");
     sources = $("#menuSourcesAdvanced option:selected").attr("value");
     var search = document.getElementById("adSearch").value;
+    
+    
+    //This is for the navigation to the advanced search and setting up a default search term
+    if(args == "start"){
+        $('#adSearch').val("News");
+    } 
+
 
     if (!args) {
         if (sources == "all" && language == "all" && sort && !search) {
