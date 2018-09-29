@@ -1,54 +1,65 @@
 /* global $, getMenuItems*/
 $(document).ready(function() {
 
-    var countries = [];
-    var categories = [];
-    var languages = [];
-    var sortBy = [];
-
-
-    var country = document.getElementById("menuCountry");
-    var category = document.getElementById("menuCategory");
-    var language = document.getElementById("menuLanguages");
-    var sort = document.getElementById("menuSortBy");
 
 
 
-    getMenuItems(function(response) {
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        var countries = [];
+        var categories = [];
 
-        var countryArray = response[1];
-        var languageArray = response[2];
-        var sortArray = response[3];
-        var categoryArray = response[0];
+        var country = document.getElementById("menuCountry");
+        var category = document.getElementById("menuCategory");
 
-        countryArray.forEach(function(entry) {
+        getMenuItems(function(response) {
+            var countryArray = response[1];
+            var categoryArray = response[0];
 
-            if (entry.id == "gb") {
-                countries.push(`<option id="menuCountryItem" selected value="${entry.id}">${entry.name}</option>`);
-                country.innerHTML = `${countries}`;
-            }
 
-            else {
-                countries.push(`<option id="menuCountryItem" value="${entry.id}">${entry.name}</option>`);
-                country.innerHTML = `${countries}`;
-            }
+            countryArray.forEach(function(entry) {
+
+                if (entry.id == "gb") {
+                    countries.push(`<option id="menuCountryItem" selected value="${entry.id}">${entry.name}</option>`);
+                    country.innerHTML = `${countries}`;
+                }
+
+                else {
+                    countries.push(`<option id="menuCountryItem" value="${entry.id}">${entry.name}</option>`);
+                    country.innerHTML = `${countries}`;
+                }
+            });
+            
+            categoryArray.forEach(function(entry) {
+                categories.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
+                category.innerHTML = `${categories}`;
+            });
         });
+    }
 
-        categoryArray.forEach(function(entry) {
-            categories.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
-            category.innerHTML = `${categories}`;
+
+    else if (window.location.pathname === '/advanced.html') {
+        var languages = [];
+        var sortBy = [];
+
+        var language = document.getElementById("menuLanguages");
+        var sort = document.getElementById("menuSortBy");
+
+        getMenuItems(function(response) {
+            var sortArray = response[3];
+            var languageArray = response[2];
+
+
+            languageArray.forEach(function(entry) {
+                languages.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
+                language.innerHTML = `${languages}`;
+            });
+
+            sortArray.forEach(function(entry) {
+                sortBy.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
+                sort.innerHTML = `${sortBy}`;
+            });
         });
-        
-        
-        languageArray.forEach(function(entry) {
-            languages.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
-            language.innerHTML = `${languages}`;
-        });
-        
-        sortArray.forEach(function(entry) {
-            sortBy.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
-            sort.innerHTML = `${sortBy}`;
-        });
-    });
+    }
+
 
 });

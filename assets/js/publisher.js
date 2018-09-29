@@ -68,7 +68,6 @@ function addPublisher(args, callback) {
 
     sendPublisher(args, function(data) {
         var publishers = data.sources;
-        console.log("publishers : "+JSON.stringify(publishers));
         callback(publishers);
         publisher.setPublisherInfo(publishers);
     });

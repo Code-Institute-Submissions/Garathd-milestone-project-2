@@ -1,13 +1,11 @@
 /*global $, addPublisher, getHeadlineInfo*/
 
 function searchHeadline() {
-    $("#headlineMenu").show();
-    $("#searchMenu").hide();
+    window.location.href = 'index.html';
 }
 
 function advancedSearch() {
-    $("#headlineMenu").hide();
-    $("#searchMenu").show();
+    window.location.href = 'advanced.html';
 }
 
 $(document).ready(function() {
@@ -15,9 +13,17 @@ $(document).ready(function() {
     /*Populate Sources Dropdown*/
     function populateSources() {
 
-        var sources = document.getElementById("menuSources");
-        var sourcesAd = document.getElementById("menuSourcesAdvanced");
+    
+        //Checks which page has been selected
+        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+         var sources = document.getElementById("menuSources");
+        }
 
+       else if (window.location.pathname === '/advanced.html') {
+          var sources = document.getElementById("menuSourcesAdvanced");
+        }
+
+       
         var source = [];
         source.push("<option id='menuSourceItem' selected value='all'>All Sources</option>");
 
@@ -25,12 +31,10 @@ $(document).ready(function() {
         addPublisher(args, function(response) {
             response.forEach(function(entry) {
                 source.push(`<option id="menuSourceItem" value="${entry.id}">${entry.name}</option>`);
-                sourcesAd.innerHTML = `${source}`;
                 sources.innerHTML = `${source}`;
             });
         });
     }
     populateSources();
-  
-    $("#searchMenu").hide();
+
 });

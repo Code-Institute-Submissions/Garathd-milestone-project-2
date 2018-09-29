@@ -1,24 +1,7 @@
 /*global apiSource,apiKey,$*/
-
-
-var everythingInfo;
-
-const things = {
-
-    getEverythingInfo() {
-        return everythingInfo;
-    },
-
-    setEverythingInfo(args) {
-        everythingInfo = args;
-    }
-};
-
-
 function sendThings(args, callback) {
 
-    var url = `${apiSource}everything?`;
-    var args = args;
+    var url = `${apiSource}everything?pageSize=100&`;
 
     //This function processes the api call
     var searchEverything = function(args) {
@@ -38,33 +21,37 @@ function sendThings(args, callback) {
 
 
     //This to check if no check have been selected
-    if (!args.sources && !args.language && !args.sortBy && !args.q) {
-        console.log("No filter for Everything");
-
+    if (args.sources == "all" && args.language == "all" && args.sortBy == "all" && !args.q) {
         url += `&apiKey=${apiKey}`;
+        searchEverything(url);
+    }
+
+    //Covers Menu Navigation
+    else if (args.sources == undefined && args.language == undefined && args.sortBy == undefined && !args.q) {
+        url += `q=news&apiKey=${apiKey}`;
         searchEverything(url);
     }
 
     else {
 
         if (args.sources != "all" && args.sources) {
-            console.log("sources exists");
             url += `sources=${args.sources}&`;
         }
 
         if (args.language != "all" && args.language) {
-            console.log("languages exists");
             url += `language=${args.language}&`;
         }
 
         if (args.sortBy) {
-            console.log("sortBy exists");
             url += `sortBy=${args.sortBy}&`;
         }
 
         if (args.q) {
-            console.log("q exists");
             url += `q=${args.q}&`;
+        }
+
+        if (args.page > 1) {
+            url += `page=${args.page}&`;
         }
 
         url += `apiKey=${apiKey}`;
@@ -75,18 +62,9 @@ function sendThings(args, callback) {
 
 function addThings(args, callback) {
 
-    console.log("Check the args for search: " + args.q);
-
     sendThings(args, function(data) {
-
-        console.log("Check everything response: " + JSON.stringify(data));
-        var everything = data.articles;
+        var everything = data;
         callback(everything);
-        things.setEverythingInfo(everything);
     })
 
 };
-
-function getEverythingData() {
-    return everythingInfo;
-}

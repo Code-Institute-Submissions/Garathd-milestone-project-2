@@ -13,7 +13,7 @@ var pageResultSearch;
 function getEverythingInfo(args) {
 
     var pageSearch = document.getElementById("pageNumberSearch");
-    var pageResultsSearch = document.getElementById("totalResultsInfoSearch");
+    var pgResults = document.getElementById("totalResultsInfoSearch");
     var writeInfo = document.getElementById("output");
 
     //Check if pagnation
@@ -34,6 +34,9 @@ function getEverythingInfo(args) {
 
     if (!args) {
         if (sources == "all" && language == "all" && sort && !search) {
+            alert("Try refining the search");
+        }
+        else if (sources == "all" && language != "all" && sort && !search) {
             alert("Try refining the search");
         }
         else {
@@ -60,37 +63,42 @@ function getEverythingInfo(args) {
         params['sources'] = sources;
         params['language'] = language;
         params['q'] = search;
+        params['page'] = currentPageSearch;
 
         addThings(params, function(response) {
 
+            var searchParameters = response.articles;
             pageResultSearch = response.totalResults;
+
+            console.log("Check articles: " + JSON.stringify(searchParameters));
+
 
             if (!args) {
                 //Total Results for Pagnation    
                 if (currentPageSizeSearch > pageResultSearch || pageResultSearch <= 100) {
                     currentPageSizeSearch = pageResultSearch;
-                    pageResultsSearch.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
+                    pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
                 }
                 else if (pageResultSearch >= 100) {
                     currentPageSizeSearch = 100;
-                    pageResultsSearch.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
+                    pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
                 }
                 else if (currentPageSizeSearch < pageResultSearch) {
                     currentPageSizeSearch = pageResultSearch;
-                    pageResultsSearch.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
+                    pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
                 }
             }
             else if (args) {
                 if (pageResultSearch < currentPageSizeSearch) {
                     currentPageSizeSearch = pageResultSearch;
-                    pageResultsSearch.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
+                    pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
                 }
             }
             else {
-                pageResultsSearch.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
+                pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
             }
 
-            response.forEach(function(entry) {
+            searchParameters.forEach(function(entry) {
                 var formatDate = entry.publishedAt;
                 var responseDate = moment(formatDate).format('DD/MM/YYYY');
 
@@ -108,6 +116,7 @@ function getEverythingInfo(args) {
                 if (articleInfo.content == null) {
                     articleInfo.content = "Read More";
                 }
+
 
                 releases.push(`<div class="article-post">
                         <div class="row">
@@ -136,25 +145,30 @@ function getEverythingInfo(args) {
                         </div>
                     </div>`);
             });
-            writeInfo.innerHTML = `${releases}`;
+            
+            writeInfo.innerHTML = releases.join('');
+
+            /*Ensures the Results are dispplayed*/
+            pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
+
             $("#navigationSearch").show();
             $("#totalResultsInfoSearch").show();
-            $("#pageNumberHeadlineSearch").show();
+            $("#pageNumberSearch").show();
             $("#loading").hide();
         });
     }
 };
 
 function prevSearch() {
-    var pageResults = document.getElementById("totalResultsInfoSearch");
-    var page = document.getElementById("pageNumberSearch");
+    var pgResults = document.getElementById("totalResultsInfoSearch");
+    var pageSearch = document.getElementById("pageNumberSearch");
 
     if (currentPageSearch > 1) {
         currentPageSearch--;
         currentPageSizeSearch = currentPageSizeSearch - 100;
 
-        page.innerHTML = "<strong>Page: </strong>" + currentPageSearch;
-        pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
+        pageSearch.innerHTML = "<strong>Page: </strong>" + currentPageSearch;
+        pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
 
         getEverythingInfo("navigation");
     }
@@ -164,25 +178,30 @@ function prevSearch() {
 
 function nextSearch() {
 
-    var pageResults = document.getElementById("totalResultsInfoSearch");
-    var page = document.getElementById("pageNumberSearch");
+
+    var pgResults = document.getElementById("totalResultsInfoSearch");
+    var pageSearch = document.getElementById("pageNumberSearch");
 
     if ((pageResultSearch / 100 > 1) && (pageResultSearch > currentPageSizeSearch)) {
         currentPageSearch++;
         currentPageSizeSearch = currentPageSizeSearch + 100;
 
-        getEverythingInfo("navigation");
+        pageSearch.innerHTML = "<strong>Page: </strong>" + currentPageSearch;
+        pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
 
-        page.innerHTML = "<strong>Page: </strong>" + currentPageSearch;
-        pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
+        getEverythingInfo("navigation");
 
         if (pageResultSearch - currentPageSizeSearch < 0) {
 
             currentPageSizeSearch = pageResultSearch;
 
-            page.innerHTML = "Page: " + currentPageSearch;
-            pageResults.innerHTML = "Results: " + currentPageSizeSearch + " / " + pageResultSearch;
+            pageSearch.innerHTML = "Page: " + currentPageSearch;
+            pgResults.innerHTML = "Results: " + currentPageSizeSearch + " / " + pageResultSearch;
 
         }
     }
 }
+
+$(document).ready(function() {
+    getEverythingInfo("start");
+});

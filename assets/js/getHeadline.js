@@ -1,4 +1,4 @@
-/*global $, addHeadline*/
+/*global $, addHeadline, moment*/
 var country;
 var category;
 var sources;
@@ -141,7 +141,7 @@ function getHeadlineInfo(args) {
                         </div>
                     </div>`);
             });
-            writeInfo.innerHTML = `${releases}`;
+            writeInfo.innerHTML = releases.join('');
             $("#navigationHeadline").show();
             $("#totalResultsInfoHeadline").show();
             $("#pageNumberHeadline").show();

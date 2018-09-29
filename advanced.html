@@ -13,14 +13,15 @@
     <script src="assets/js/menu.js"></script>
     <script src="assets/js/publisher.js"></script>
     <script src="assets/js/getPublisher.js"></script>
-    <script src="assets/js/getHeadline.js"></script>
-    <script src="assets/js/headlines.js"></script>
+    <script src="assets/js/getEverything.js"></script>
+    <script src="assets/js/everything.js"></script>
     <script src="assets/js/script.js"></script>
+
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 
-    <title>Concept Testing Headlines</title>
+    <title>Concept Testing Advanced</title>
 </head>
 
 <body>
@@ -29,54 +30,50 @@
         <div id="searchBar">
             <div class="row">
                 <div class="col-md-12">
-                    <button onclick="advancedSearch()">Advanced Search</button>
+                    <button onclick="searchHeadline()">Search Headlines</button>
                 </div>
             </div>
         </div>
 
-
-        <!-- Navigation for Headline Stuff -->
-        <div id="headlineMenu">
-            <div id="navigationHeadline">
+        <div id="searchMenu">
+            <!-- Navigation for Search Stuff -->
+            <div id="navigationSearch">
                 <div class="row">
                     <div class="col-md-3">
-                        <button id="prevButton" onclick="prevHeadline()" class="btn btn-primary">Previous</button>
+                        <button id="prevButton" onclick="prevSearch()" class="btn btn-primary">Previous</button>
                     </div>
                     <div class="col-md-3">
-                        <p id="pageNumberHeadline"></p>
+                        <p id="pageNumberSearch"></p>
                     </div>
                     <div class="col-md-3">
-                        <p id="totalResultsInfoHeadline"></p>
+                        <p id="totalResultsInfoSearch"></p>
                     </div>
                     <div class="col-md-3">
-                        <button id="nextButton" onclick="nextHeadline()" class="btn btn-primary">Next</button>
+                        <button id="nextButton" onclick="nextSearch()" class="btn btn-primary">Next</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Navigation for Headline Stuff -->
-
-            <div id="headlineSearch">
+            <div id="advancedSearch">
                 <div class="row">
                     <div class="col-md-3">
-                        <select id="menuCountry"></select>
+                        <select id="menuSourcesAdvanced"></select>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="menuLanguages"></select>
                     </div>
                     <div class="col-md-2">
-                        <select id="menuCategory"></select>
+                        <select id="menuSortBy"></select>
                     </div>
-                    <div class="col-md-3">
-                        <select id="menuSources"></select>
+                    <div class="col-md-2">
+                        <input id="adSearch" type="text" placeholder="Advanced Search" name="" />
                     </div>
-                    <div class="col-md-3">
-                        <input id="searchBoxHeadline" placeholder="Search Headlines" type="text" name="" />
-                    </div>
-                    <div class="col-md-1">
-                        <button id="searchButtonHeadline" onclick="getHeadlineInfo()">Search</button>
+                    <div class="col-md-2">
+                        <button id="searchButtonAdvanced" onclick="getEverythingInfo()">Search</button>
                     </div>
                 </div>
             </div>
         </div>
-
 
         <div id="loading">
             <div class="row">
