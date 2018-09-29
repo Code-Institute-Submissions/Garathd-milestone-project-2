@@ -12,6 +12,9 @@
     <script src="assets/js/initialise.js"></script>
     <script src="assets/js/menu.js"></script>
     <script src="assets/js/publisher.js"></script>
+    <script src="assets/js/getPublisher.js"></script>
+    <script src="assets/js/getHeadline.js"></script>
+    <script src="assets/js/getEverything.js"></script>
     <script src="assets/js/headlines.js"></script>
     <script src="assets/js/everything.js"></script>
     <script src="assets/js/script.js"></script>
@@ -25,50 +28,94 @@
 <body>
     <div class="container">
 
-        <div id="navigation-wrapper">
-            <div id="navigation">
-                <div class="row">
-                    <div class="col-md-3">
-                        <button id="prevButton" onclick="prev()" class="btn btn-primary">Previous</button>
-                    </div>
-                    <div class="col-md-3">
-                        <p id="pageNumber"></p>
-                    </div>
-                    <div class="col-md-3">
-                        <p id="totalResultsInfo"></p>
-                    </div>
-                    <div class="col-md-3">
-                        <button id="nextButton" onclick="next()" class="btn btn-primary">Next</button></div>
-                </div>
-            </div>
-        </div>
-
         <div id="searchBar">
             <div class="row">
                 <div class="col-md-12">
-                    <!--<button onclick="getPublisherInfo()">Publishers</button>-->
-                    <!--<button onclick="enableHeadline()">Headlines</button>-->
-                    <!--<button onclick="getEverythingInfo()">Everything</button>-->
+                    <button onclick="searchHeadline()">Search Headlines</button>
+                    <button onclick="advancedSearch()">Advanced Search</button>
                 </div>
             </div>
         </div>
 
-        <div id="headlineSearch">
-            <div class="row">
-                <div class="col-md-3">
-                    <select id="menuCountry"></select>
+
+        <!-- Navigation for Headline Stuff -->
+        <div id="headlineMenu">
+            <div id="navigationHeadline">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button id="prevButton" onclick="prevHeadline()" class="btn btn-primary">Previous</button>
+                    </div>
+                    <div class="col-md-3">
+                        <p id="pageNumberHeadline"></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p id="totalResultsInfoHeadline"></p>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="nextButton" onclick="nextHeadline()" class="btn btn-primary">Next</button>
+                    </div>
                 </div>
-                <div class="col-md-2">
-                    <select id="menuCategory"></select>
+            </div>
+
+            <!-- Navigation for Headline Stuff -->
+
+            <div id="headlineSearch">
+                <div class="row">
+                    <div class="col-md-3">
+                        <select id="menuCountry"></select>
+                    </div>
+                    <div class="col-md-2">
+                        <select id="menuCategory"></select>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="menuSources"></select>
+                    </div>
+                    <div class="col-md-3">
+                        <input id="searchBoxHeadline" placeholder="Search Headlines" type="text" name="" />
+                    </div>
+                    <div class="col-md-1">
+                        <button id="searchButtonHeadline" onclick="getHeadlineInfo()">Search</button>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <select id="menuSources"></select>
+            </div>
+        </div>
+
+        <div id="searchMenu">
+            <!-- Navigation for Search Stuff -->
+            <div id="navigationSearch">
+                <div class="row">
+                    <div class="col-md-3">
+                        <button id="prevButton" onclick="prevSearch()" class="btn btn-primary">Previous</button>
+                    </div>
+                    <div class="col-md-3">
+                        <p id="pageNumberSearch"></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p id="totalResultsInfoSearch"></p>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="nextButton" onclick="nextSearch()" class="btn btn-primary">Next</button>
+                    </div>
                 </div>
-                <div class="col-md-3">
-                    <input id="searchBoxHeadline" placeholder="Search Headlines" type="text" name="" />
-                </div>
-                <div class="col-md-1">
-                    <button id="searchButtonHeadline" onclick="getHeadlineInfo()">Search</button>
+            </div>
+
+            <div id="advancedSearch">
+                <div class="row">
+                    <div class="col-md-3">
+                        <select id="menuSourcesAdvanced"></select>
+                    </div>
+                    <div class="col-md-3">
+                        <select id="menuLanguages"></select>
+                    </div>
+                    <div class="col-md-2">
+                        <select id="menuSortBy"></select>
+                    </div>
+                    <div class="col-md-2">
+                        <input id="adSearch" type="text" placeholder="Advanced Search" name="" />
+                    </div>
+                    <div class="col-md-2">
+                        <button id="searchButtonAdvanced" onclick="getEverythingInfo()">Search</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,7 +136,7 @@
         </div>
         <!-- Close Output -->
 
-    </div>
+
     </div>
 </body>
 

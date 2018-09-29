@@ -38,8 +38,8 @@ function sendThings(args, callback) {
 
 
     //This to check if no check have been selected
-    if (!args.country && !args.category && !args.q) {
-        console.log("No filter for Headlines");
+    if (!args.sources && !args.language && !args.sortBy && !args.q) {
+        console.log("No filter for Everything");
 
         url += `&apiKey=${apiKey}`;
         searchEverything(url);
@@ -47,14 +47,19 @@ function sendThings(args, callback) {
 
     else {
 
-        if (args.country) {
-            console.log("country exists");
-            url += `country=${args.country}&`;
+        if (args.sources != "all" && args.sources) {
+            console.log("sources exists");
+            url += `sources=${args.sources}&`;
         }
 
-        if (args.category) {
-            console.log("category exists");
-            url += `category=${args.category}&`;
+        if (args.language != "all" && args.language) {
+            console.log("languages exists");
+            url += `language=${args.language}&`;
+        }
+
+        if (args.sortBy) {
+            console.log("sortBy exists");
+            url += `sortBy=${args.sortBy}&`;
         }
 
         if (args.q) {
@@ -70,11 +75,11 @@ function sendThings(args, callback) {
 
 function addThings(args, callback) {
 
-    console.log("everything country: " + args.country);
-    console.log("headline category: " + args.category);
-    console.log("headline q: " + args.q);
+    console.log("Check the args for search: " + args.q);
 
     sendThings(args, function(data) {
+
+        console.log("Check everything response: " + JSON.stringify(data));
         var everything = data.articles;
         callback(everything);
         things.setEverythingInfo(everything);

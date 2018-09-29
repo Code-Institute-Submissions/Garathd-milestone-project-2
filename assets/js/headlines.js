@@ -90,6 +90,7 @@ function getHeadline() {
     return headlineInfo;
 }
 
-function enableHeadline() {
-    $("#headlineSearch").show();
-};
+
+$(document).ready(function(){
+    getHeadlineInfo("start"); 
+});

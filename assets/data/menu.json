@@ -311,5 +311,19 @@
             "id": "zh",
             "name": "Chinese"
         }
+    ],
+    "sortBy": [
+        {
+            "id": "publishedAt",
+            "name": "Most Recent"
+        },
+        {
+            "id": "relevancy",
+            "name": "Most Relevant"
+        }, 
+        {
+            "id": "popularity",
+            "name": "Most Popular"
+        }
     ]
 }
