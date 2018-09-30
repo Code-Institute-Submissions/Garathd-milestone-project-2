@@ -9,17 +9,15 @@ var currentPageSizeHeadline = 100;
 var pageResultHeadline;
 
 function getHeadlineInfo(args) {
-    
+
 
     var pageResults = document.getElementById("totalResultsInfoHeadline");
     var writeInfo = document.getElementById("output");
 
 
-    //Check if pagnation
+    //Check if pagination has been used
     if (args != "navigation") {
-        //Clear Fields
         currentPageHeadline = 1;
-        /*End Clear Fields*/
     }
 
     //Input Stuff
@@ -27,14 +25,32 @@ function getHeadlineInfo(args) {
     category = $("#menuCategory option:selected").attr("value");
     sources = $("#menuSources option:selected").attr("value");
     var search = document.getElementById("searchBoxHeadline").value;
+    
+            //Default Settings and for Repopulating for no articles found
+        if (args == "start") {
+            country = "gb";
+            search = "";
+            $("#totalResultsInfoHeadline").hide();
+        } else{
+            $("#totalResultsInfoHeadline").show();
+        }
 
 
     if (!args) {
+
         if (country == "all" && category == "all" && sources == "all" && !search) {
-            alert("You must enter search data or at least choose a Country or Category or Source");
+
+            $('#myModal').modal('show');
+            $(".modal-title").html("Invalid Search");
+            $(".modal-body").html("You must enter search data or at least choose a Country or Category or Source");
+
         }
         else if ((country != "all" || category != "all") && sources != "all") {
-            alert("You cannot use search with sources if category and country are specified");
+
+            $('#myModal').modal('show');
+            $(".modal-title").html("Invalid Search");
+            $(".modal-body").html("You cannot use search with sources if category and country are specified");
+
         }
         else {
             runNow();
@@ -63,6 +79,15 @@ function getHeadlineInfo(args) {
         addHeadline(params, function(response) {
 
             var headlineParameters = response.articles;
+
+            if (headlineParameters.length == 0) {
+                $('#myModal').modal('show');
+                $(".modal-title").html("No Articles Found");
+                $(".modal-body").html("Try refining the search criteria");
+                getHeadlineInfo("start");
+            }
+
+
             pageResultHeadline = response.totalResults;
 
             if (!args) {
@@ -165,13 +190,14 @@ function prevHeadline() {
 
     if (currentPageHeadline > 1) {
         currentPageHeadline--;
-        
+
         var remainder = currentPageSizeHeadline % 100;
-        
-        
-        if(remainder != 0){
+
+
+        if (remainder != 0) {
             currentPageSizeHeadline = currentPageSizeHeadline - remainder;
-        } else {
+        }
+        else {
             currentPageSizeHeadline = currentPageSizeHeadline - 100;
         }
 

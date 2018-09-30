@@ -38,10 +38,14 @@ function getEverythingInfo(args) {
 
     if (!args) {
         if (sources == "all" && language == "all" && sort && !search) {
-            alert("Try refining the search");
+            $('#myModalTwo').modal('show');
+            $(".modal-title").html("Invalid Search");
+            $(".modal-body").html("Try refining the search criteria");
         }
         else if (sources == "all" && language != "all" && sort && !search) {
-            alert("Try refining the search");
+            $('#myModalTwo').modal('show');
+            $(".modal-title").html("Invalid Search");
+            $(".modal-body").html("Try refining the search criteria");
         }
         else {
             runNow();
@@ -70,6 +74,15 @@ function getEverythingInfo(args) {
         addThings(params, function(response) {
 
             var searchParameters = response.articles;
+
+            if (searchParameters.length == 0) {
+                $('#myModalTwo').modal('show');
+                $(".modal-title").html("No Articles Found");
+                $(".modal-body").html("Try refining the search criteria");
+
+                getEverythingInfo("start");
+            }
+
             pageResultSearch = response.totalResults;
 
             console.log("Check articles: " + JSON.stringify(searchParameters));
@@ -96,10 +109,15 @@ function getEverythingInfo(args) {
                     currentPageSizeSearch = pageResultSearch;
                     pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
                 }
+                else if (currentPageSizeSearch == 0) {
+                    currentPageSizeSearch = 100;
+                    pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
+                }
             }
             else {
                 pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
             }
+
 
             searchParameters.forEach(function(entry) {
                 var formatDate = entry.publishedAt;
