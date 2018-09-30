@@ -11,7 +11,7 @@ var pageResultSearch;
 
 
 function getEverythingInfo(args) {
-    
+
     var pgResults = document.getElementById("totalResultsInfoSearch");
     var writeInfo = document.getElementById("output");
 
@@ -28,12 +28,12 @@ function getEverythingInfo(args) {
     language = $("#menuLanguages option:selected").attr("value");
     sources = $("#menuSourcesAdvanced option:selected").attr("value");
     var search = document.getElementById("adSearch").value;
-    
-    
+
+
     //This is for the navigation to the advanced search and setting up a default search term
-    if(args == "start"){
+    if (args == "start") {
         $('#adSearch').val("News");
-    } 
+    }
 
 
     if (!args) {
@@ -79,9 +79,7 @@ function getEverythingInfo(args) {
                 //Total Results for Pagnation    
                 if (currentPageSizeSearch > pageResultSearch || pageResultSearch <= 100) {
                     currentPageSizeSearch = pageResultSearch;
-                    
-                    var pageOf = 
-                    
+
                     pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
                 }
                 else if (pageResultSearch >= 100) {
@@ -150,7 +148,7 @@ function getEverythingInfo(args) {
                         </div>
                     </div>`);
             });
-            
+
             writeInfo.innerHTML = releases.join('');
 
             /*Ensures the Results are dispplayed*/
@@ -158,6 +156,22 @@ function getEverythingInfo(args) {
 
             $(".searchMenu").show();
             $("#loading").hide();
+
+            //Check the Navigation
+            if (pageResultSearch <= 100 || currentPageSizeSearch <= 100) {
+                $("button.prevButton").hide();
+            }
+            else {
+                $("button.prevButton").show();
+            }
+
+
+            if (pageResultSearch <= 100 || pageResultSearch == currentPageSizeSearch) {
+                $("button.nextButton").hide();
+            }
+            else {
+                $("button.nextButton").show();
+            }
         });
     }
 };
@@ -167,7 +181,16 @@ function prevSearch() {
 
     if (currentPageSearch > 1) {
         currentPageSearch--;
-        currentPageSizeSearch = currentPageSizeSearch - 100;
+
+        var remainder = currentPageSizeSearch % 100;
+
+
+        if (remainder != 0) {
+            currentPageSizeSearch = currentPageSizeSearch - remainder;
+        }
+        else {
+            currentPageSizeSearch = currentPageSizeSearch - 100;
+        }
 
         pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
 

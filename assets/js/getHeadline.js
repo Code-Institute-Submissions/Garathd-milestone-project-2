@@ -9,6 +9,7 @@ var currentPageSizeHeadline = 100;
 var pageResultHeadline;
 
 function getHeadlineInfo(args) {
+    
 
     var pageResults = document.getElementById("totalResultsInfoHeadline");
     var writeInfo = document.getElementById("output");
@@ -89,7 +90,6 @@ function getHeadlineInfo(args) {
                 pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeHeadline + " / " + pageResultHeadline;
             }
 
-
             headlineParameters.forEach(function(entry) {
                 var formatDate = entry.publishedAt;
                 var responseDate = moment(formatDate).format('DD/MM/YYYY');
@@ -139,6 +139,23 @@ function getHeadlineInfo(args) {
             writeInfo.innerHTML = releases.join('');
             $(".headlineMenu").show();
             $("#loading").hide();
+
+            //Check the Navigation
+            if (pageResultHeadline <= 100 || currentPageSizeHeadline <= 100) {
+                $("button.prevButton").hide();
+            }
+            else {
+                $("button.prevButton").show();
+            }
+
+
+            if (pageResultHeadline <= 100 || pageResultHeadline == currentPageSizeHeadline) {
+                $("button.nextButton").hide();
+            }
+            else {
+                $("button.nextButton").show();
+            }
+
         });
     }
 };
@@ -148,7 +165,15 @@ function prevHeadline() {
 
     if (currentPageHeadline > 1) {
         currentPageHeadline--;
-        currentPageSizeHeadline = currentPageSizeHeadline - 100;
+        
+        var remainder = currentPageSizeHeadline % 100;
+        
+        
+        if(remainder != 0){
+            currentPageSizeHeadline = currentPageSizeHeadline - remainder;
+        } else {
+            currentPageSizeHeadline = currentPageSizeHeadline - 100;
+        }
 
         pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeHeadline + " / " + pageResultHeadline;
 
@@ -157,6 +182,7 @@ function prevHeadline() {
 }
 
 function nextHeadline() {
+
 
     var pageResults = document.getElementById("totalResultsInfoHeadline");
 
@@ -171,8 +197,6 @@ function nextHeadline() {
         if (pageResultHeadline - currentPageSizeHeadline < 0) {
 
             currentPageSizeHeadline = pageResultHeadline;
-
-            page.innerHTML = "Page: " + currentPageHeadline;
             pageResults.innerHTML = "Results: " + currentPageSizeHeadline + " / " + pageResultHeadline;
 
         }
