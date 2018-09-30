@@ -2,7 +2,16 @@ body {
     font-family: "apercu", sans-serif !important;
 }
 
-.container, .container-fluid{
+.branding {
+    font-family: "apercu", sans-serif !important;
+    font-size: 30px;
+    font-weight: 600;
+    color: #ffffff;
+    padding: 2px;
+}
+
+.container,
+.container-fluid {
     overflow-x: hidden !important;
 }
 
@@ -30,14 +39,15 @@ body {
 }
 
 .btn.btn-link {
-    color: #0d47a1 !important;
     font-size: 16px !important;
-    ;
+    color: #4CAF50 !important;
 }
 
 .menu-header {
     margin: 0;
-    padding: 5%;
+    padding: 2% 5% 2% 5%;
+    background-color: #f3f3f3;
+    max-height: 310px;
 }
 
 .header-bar {
@@ -52,6 +62,7 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
+    overflow: hidden;
 }
 
 
@@ -67,6 +78,7 @@ body {
 
 .navigation-buttons {
     text-align: center;
+    margin-top: 3%;
 }
 
 .title {
@@ -101,11 +113,15 @@ body {
 }
 
 .prevButton {
-    float: left
+    float: left;
+    background: transparent !important;
+    border: none !important;
 }
 
 .nextButton {
     float: right;
+    background: transparent !important;
+    border: none !important;
 }
 
 #totalResultsInfoSearch,

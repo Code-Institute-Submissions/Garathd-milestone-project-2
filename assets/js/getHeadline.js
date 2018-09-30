@@ -46,7 +46,7 @@ function getHeadlineInfo(args) {
     function runNow() {
 
         //Show Loading Screen and hide Navigation
-        $("#headlineMenu").hide();
+        $(".headlineMenu").hide();
         $("#loading").show();
 
         var releases = [];
@@ -137,7 +137,7 @@ function getHeadlineInfo(args) {
                     </div>`);
             });
             writeInfo.innerHTML = releases.join('');
-            $("#headlineMenu").show();
+            $(".headlineMenu").show();
             $("#loading").hide();
         });
     }

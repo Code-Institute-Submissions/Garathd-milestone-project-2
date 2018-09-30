@@ -23,12 +23,22 @@
     <link rel="stylesheet" href="assets/modules/mdb/css/style.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 
-    <title>Concept Testing Advanced</title>
+    <title>World News Feed | Advanced Search</title>
 </head>
 
 <body>
 
-    <div class="containter-fluid header-bar"></div>
+    <div class="containter-fluid header-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="branding">
+                        <p>NEWS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid menu-header">
 
@@ -36,27 +46,12 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <button class="btn btn-link" onclick="searchHeadline()">Search by Top Headlines</button>
+                    <button class="btn btn-link" onclick="searchHeadline()">Use Search by Top Headlines...</button>
                 </div>
             </div>
         </div>
 
-        <div id="searchMenu">
-            <!-- Navigation for Search Stuff -->
-            <div id="navigationSearch">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="navigation-buttons">
-                            <button onclick="prevSearch()" class="prevButton btn btn-primary">Previous</button>
-                            <button onclick="nextSearch()" class="nextButton btn btn-primary">Next</button>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <p id="totalResultsInfoSearch"></p>
-                    </div>
-                </div>
-            </div>
+        <div class="searchMenu">
 
             <div id="advancedSearch">
                 <div class="row">
@@ -89,14 +84,34 @@
     </div>
 
     <div class="container">
+
+        <!-- Navigation for Search Stuff -->
+        <div class="searchMenu">
+            <div id="navigationSearch">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navigation-buttons">
+                            <button onclick="prevSearch()" class="prevButton"><i class="fa fa-angle-double-left"></i></button>
+                            <button onclick="nextSearch()" class="nextButton"><i class="fa fa-angle-double-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p id="totalResultsInfoSearch"></p>
+                </div>
+            </div>
+        </div>
         <!-- Output -->
         <div class="row">
-            <div id="output">
+            <div class="col-md-12">
+                <div id="output">
 
+                </div>
             </div>
         </div>
         <!-- Close Output -->
-
     </div>
 
 

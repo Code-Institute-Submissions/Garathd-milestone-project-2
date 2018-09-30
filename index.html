@@ -23,12 +23,22 @@
     <link rel="stylesheet" href="assets/modules/mdb/css/style.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 
-    <title>Concept Testing Headlines</title>
+    <title>World News Feed | Search Top Headlines</title>
 </head>
 
 <body>
 
-    <div class="containter-fluid header-bar"></div>
+    <div class="containter-fluid header-bar">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="branding">
+                        <p>NEWS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid menu-header">
 
@@ -36,28 +46,14 @@
             <div class="row">
                 <div class="col-md-12">
 
-                    <button class="btn btn-link" onclick="advancedSearch()">Use Advanced Search</button>
+                    <button class="btn btn-link" onclick="advancedSearch()">Use our Advanced Search...</button>
                 </div>
             </div>
         </div>
 
 
         <!-- Navigation for Headline Stuff -->
-        <div id="headlineMenu">
-            <div id="navigationHeadline">
-                <div class="row">
-                    <div class="col-md-12">
-                        <button onclick="prevHeadline()" class="prevButton btn btn-primary">Previous</button>
-                        <button onclick="nextHeadline()" class="nextButton btn btn-primary">Next</button>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <p id="totalResultsInfoHeadline"></p>
-                    </div>
-                </div>
-            </div>
+        <div class="headlineMenu">
 
             <!-- Navigation for Headline Stuff -->
 
@@ -92,22 +88,42 @@
     </div>
 
     <div class="container">
+
+        <!-- Navigation for Search Stuff -->
+        <div class="headlineMenu">
+            <div id="navigationHeadline">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="navigation-buttons">
+                            <button onclick="prevHeadline()" class="prevButton"><i class="fa fa-angle-double-left"></i></button>
+                            <button onclick="nextHeadline()" class="nextButton"><i class="fa fa-angle-double-right"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p id="totalResultsInfoHeadline"></p>
+                </div>
+            </div>
+        </div>
         <!-- Output -->
         <div class="row">
-            <div id="output">
+            <div class="col-md-12">
+                <div id="output">
 
+                </div>
             </div>
         </div>
         <!-- Close Output -->
-    </div>
 
-    <div class="container-fluid footer-bar">
-        <!-- Scroll to top -->
-        <div class="scrollTop">
-            <i class="fa fa-angle-double-up"></i>
+        <div class="container-fluid footer-bar">
+            <!-- Scroll to top -->
+            <div class="scrollTop">
+                <i class="fa fa-angle-double-up"></i>
+            </div>
+            <!-- Close Scroll to top -->
         </div>
-        <!-- Close Scroll to top -->
-    </div>
 </body>
 
 </html>

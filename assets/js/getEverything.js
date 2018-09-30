@@ -54,7 +54,7 @@ function getEverythingInfo(args) {
     function runNow() {
 
         //Show Loading Screen and hide Navigation
-        $("#searchMenu").hide();
+        $(".searchMenu").hide();
         $("#loading").show();
 
         var releases = [];
@@ -156,7 +156,7 @@ function getEverythingInfo(args) {
             /*Ensures the Results are dispplayed*/
             pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
 
-            $("#searchMenu").show();
+            $(".searchMenu").show();
             $("#loading").hide();
         });
     }
