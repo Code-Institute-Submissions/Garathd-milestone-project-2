@@ -17,20 +17,25 @@
     <script src="assets/js/everything.js"></script>
     <script src="assets/js/script.js"></script>
 
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/modules/mdb/css/mdb.css" type="text/css" />
+    <link rel="stylesheet" href="assets/modules/mdb/css/style.css" type="text/css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
 
     <title>Concept Testing Advanced</title>
 </head>
 
 <body>
-    <div class="container">
-        
+
+    <div class="containter-fluid header-bar"></div>
+
+    <div class="container-fluid menu-header">
+
         <div class="title">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Advanced Search</h1>
+
                     <button class="btn btn-link" onclick="searchHeadline()">Search by Top Headlines</button>
                 </div>
             </div>
@@ -68,7 +73,7 @@
                         <input class="form-control" id="adSearch" type="text" placeholder="Advanced Search" name="" />
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-info" id="searchButtonAdvanced" class="searchButton" onclick="getEverythingInfo()">Search</button>
+                        <button class="btn btn-primary" id="searchButtonAdvanced" class="searchButton" onclick="getEverythingInfo()">Search</button>
                     </div>
                 </div>
             </div>
@@ -81,7 +86,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="container">
         <!-- Output -->
         <div class="row">
             <div id="output">
@@ -90,7 +97,15 @@
         </div>
         <!-- Close Output -->
 
+    </div>
 
+
+    <div class="container-fluid footer-bar">
+        <!-- Scroll to top -->
+        <div class="scrollTop">
+            <i class="fa fa-angle-double-up"></i>
+        </div>
+        <!-- Close Scroll to top -->
     </div>
 </body>
 
