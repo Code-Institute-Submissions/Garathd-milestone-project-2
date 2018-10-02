@@ -18,13 +18,10 @@ const publisher = {
 function sendPublisher(args, callback) {
 
     var url = `${apiSource}sources?`;
-    var args = args;
-
 
     //This function processes the api call
     var searchPublisher = function(args) {
         var xhr = new XMLHttpRequest();
-
 
         xhr.open("GET", url);
         xhr.send();

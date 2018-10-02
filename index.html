@@ -12,7 +12,6 @@
     <script src="assets/js/initialise.js"></script>
     <script src="assets/js/menu.js"></script>
     <script src="assets/js/publisher.js"></script>
-    <script src="assets/js/getPublisher.js"></script>
     <script src="assets/js/getHeadline.js"></script>
     <script src="assets/js/headlines.js"></script>
     <script src="assets/js/script.js"></script>
@@ -28,35 +27,28 @@
 
 <body>
 
-    <div class="containter-fluid header-bar">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="branding">
-                        <p>NEWS</p>
-                    </div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                 </button>
+                <div class="navbar-brand">
+                    <p>NEWS</p>
                 </div>
             </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="#" onclick="advancedSearch()">Use Advanced Search</a></li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
 
     <div class="container-fluid menu-header">
-
-        <div class="title">
-            <div class="row">
-                <div class="col-md-12">
-
-                    <button class="btn btn-link" onclick="advancedSearch()">Use our Advanced Search...</button>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Navigation for Headline Stuff -->
         <div class="headlineMenu">
-
-            <!-- Navigation for Headline Stuff -->
-
             <div id="headlineSearch">
                 <div class="row">
                     <div class="col-md-3">
@@ -118,7 +110,6 @@
         <!-- Close Output -->
 
         <!-- Modal -->
-        <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
@@ -129,7 +120,7 @@
                         <h4 class="modal-title"></h4>
                     </div>
                     <div class="modal-body">
-                      
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -140,12 +131,11 @@
         </div>
         <!-- Modal -->
 
+        <!-- Scroll to top -->
         <div class="container-fluid footer-bar">
-            <!-- Scroll to top -->
             <div class="scrollTop">
                 <i class="fa fa-angle-double-up"></i>
             </div>
-            <!-- Close Scroll to top -->
         </div>
 </body>
 

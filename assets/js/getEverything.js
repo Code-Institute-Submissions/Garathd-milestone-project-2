@@ -10,31 +10,31 @@ var currentPageSizeSearch = 100;
 var pageResultSearch;
 
 
+//pagination measures
+let sourcesP;
+let languageP
+let recentP;
+let searchP;
+
 function getEverythingInfo(args) {
 
     var pgResults = document.getElementById("totalResultsInfoSearch");
     var writeInfo = document.getElementById("output");
 
-    //Check if pagnation
-    if (args != "navigation") {
-        //Clear Fields
-        currentPageSearch = 1;
-        /*End Clear Fields*/
-    }
-
-
-    //Input Stuff
     sort = $("#menuSortBy option:selected").attr("value");
     language = $("#menuLanguages option:selected").attr("value");
     sources = $("#menuSourcesAdvanced option:selected").attr("value");
     var search = document.getElementById("adSearch").value;
 
-
-    //This is for the navigation to the advanced search and setting up a default search term
+    //Check if page was not entered via pagnation
+    if (args != "navigation") {
+        currentPageSearch = 1;
+    }
+    
+    //Setting Default Search Text
     if (args == "start") {
         $('#adSearch').val("News");
     }
-
 
     if (!args) {
         if (sources == "all" && language == "all" && sort && !search) {
@@ -62,7 +62,6 @@ function getEverythingInfo(args) {
         $("#loading").show();
 
         var releases = [];
-
         var params = new Array();
 
         params['sortBy'] = sort;
@@ -71,22 +70,17 @@ function getEverythingInfo(args) {
         params['q'] = search;
         params['page'] = currentPageSearch;
 
+        //pagination measures
+        sourcesP = sources;
+        languageP = language;
+        recentP = sort;
+        searchP = search;
+
         addThings(params, function(response) {
 
             var searchParameters = response.articles;
 
-            if (searchParameters.length == 0) {
-                $('#myModalTwo').modal('show');
-                $(".modal-title").html("No Articles Found");
-                $(".modal-body").html("Try refining the search criteria");
-
-                getEverythingInfo("start");
-            }
-
             pageResultSearch = response.totalResults;
-
-            console.log("Check articles: " + JSON.stringify(searchParameters));
-
 
             if (!args) {
                 //Total Results for Pagnation    
@@ -167,7 +161,13 @@ function getEverythingInfo(args) {
                     </div>`);
             });
 
-            writeInfo.innerHTML = releases.join('');
+            //If no articles found
+            if (searchParameters.length == 0) {
+                writeInfo.innerHTML = `<h1 class="no-articles" align="center">No Articles Found!!!</h1>`;
+            }
+            else {
+                writeInfo.innerHTML = releases.join('');
+            }
 
             /*Ensures the Results are dispplayed*/
             pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
@@ -219,6 +219,7 @@ function prevSearch() {
 }
 
 function nextSearch() {
+
 
 
     var pgResults = document.getElementById("totalResultsInfoSearch");

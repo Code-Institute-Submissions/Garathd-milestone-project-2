@@ -25,15 +25,16 @@ function getHeadlineInfo(args) {
     category = $("#menuCategory option:selected").attr("value");
     sources = $("#menuSources option:selected").attr("value");
     var search = document.getElementById("searchBoxHeadline").value;
-    
-            //Default Settings and for Repopulating for no articles found
-        if (args == "start") {
-            country = "gb";
-            search = "";
-            $("#totalResultsInfoHeadline").hide();
-        } else{
-            $("#totalResultsInfoHeadline").show();
-        }
+
+    //Default Settings and for Repopulating for no articles found
+    if (args == "start") {
+        country = "gb";
+        search = "";
+        $("#totalResultsInfoHeadline").hide();
+    }
+    else {
+        $("#totalResultsInfoHeadline").show();
+    }
 
 
     if (!args) {
@@ -79,14 +80,6 @@ function getHeadlineInfo(args) {
         addHeadline(params, function(response) {
 
             var headlineParameters = response.articles;
-
-            if (headlineParameters.length == 0) {
-                $('#myModal').modal('show');
-                $(".modal-title").html("No Articles Found");
-                $(".modal-body").html("Try refining the search criteria");
-                getHeadlineInfo("start");
-            }
-
 
             pageResultHeadline = response.totalResults;
 
@@ -161,7 +154,16 @@ function getHeadlineInfo(args) {
                         </div>
                     </div>`);
             });
-            writeInfo.innerHTML = releases.join('');
+
+            //If no articles found
+            if (headlineParameters.length == 0) {
+                writeInfo.innerHTML = `<h1 class="no-articles" align="center">No Articles Found!!!</h1>`;
+            }
+            else {
+                writeInfo.innerHTML = releases.join('');
+            }
+
+
             $(".headlineMenu").show();
             $("#loading").hide();
 

@@ -1,9 +1,6 @@
 /* global $, getMenuItems*/
 $(document).ready(function() {
 
-
-
-
     if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
         var countries = [];
         var categories = [];

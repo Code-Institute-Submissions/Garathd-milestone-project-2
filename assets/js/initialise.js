@@ -15,11 +15,21 @@ function getMenuItems(callback) {
     });
 };
 
+$(window).scroll(function() {
+    if ($(this).scrollTop() > 300) {
+        $('.scrollTop').show();
+    }
+    else {
+        $('.scrollTop').hide();
+    }
+});
+
 
 $(document).ready(function() {
 
     //$("#headlineSearch").hide();
     $("#loading").hide();
+    $('.scrollTop').hide();
 
     var scrollTop = $(".scrollTop");
 
