@@ -1,40 +1,30 @@
 /*global $, addThings, moment*/
+let sources;
+let language;
+let sort;
+let search;
 
-var sources;
-var language;
-var sort;
-
-//Search Stuff
 var currentPageSearch = 1;
 var currentPageSizeSearch = 100;
 var pageResultSearch;
 
-
-//pagination measures
-let sourcesP;
-let languageP
-let recentP;
-let searchP;
-
 function getEverythingInfo(args) {
+
+    //Clear to default
+    document.getElementById("output").innerHTML = "";
 
     var pgResults = document.getElementById("totalResultsInfoSearch");
     var writeInfo = document.getElementById("output");
 
-    sort = $("#menuSortBy option:selected").attr("value");
-    language = $("#menuLanguages option:selected").attr("value");
-    sources = $("#menuSourcesAdvanced option:selected").attr("value");
-    var search = document.getElementById("adSearch").value;
-
     //Check if page was not entered via pagnation
     if (args != "navigation") {
         currentPageSearch = 1;
+        sort = $("#menuSortBy option:selected").attr("value");
+        language = $("#menuLanguages option:selected").attr("value");
+        sources = $("#menuSourcesAdvanced option:selected").attr("value");
+        search = document.getElementById("adSearch").value;
     }
-    
-    //Setting Default Search Text
-    if (args == "start") {
-        $('#adSearch').val("News");
-    }
+
 
     if (!args) {
         if (sources == "all" && language == "all" && sort && !search) {
@@ -69,12 +59,6 @@ function getEverythingInfo(args) {
         params['language'] = language;
         params['q'] = search;
         params['page'] = currentPageSearch;
-
-        //pagination measures
-        sourcesP = sources;
-        languageP = language;
-        recentP = sort;
-        searchP = search;
 
         addThings(params, function(response) {
 
@@ -164,6 +148,7 @@ function getEverythingInfo(args) {
             //If no articles found
             if (searchParameters.length == 0) {
                 writeInfo.innerHTML = `<h1 class="no-articles" align="center">No Articles Found!!!</h1>`;
+
             }
             else {
                 writeInfo.innerHTML = releases.join('');
@@ -220,8 +205,6 @@ function prevSearch() {
 
 function nextSearch() {
 
-
-
     var pgResults = document.getElementById("totalResultsInfoSearch");
 
     if ((pageResultSearch / 100 > 1) && (pageResultSearch > currentPageSizeSearch)) {
@@ -243,5 +226,8 @@ function nextSearch() {
 }
 
 $(document).ready(function() {
-    getEverythingInfo("start");
+    document.getElementById("adSearch").value = "";
+    document.getElementById("output").innerHTML = `<h1 class="no-articles" align="center">Search Now</h1>`;
+    $("button.nextButton").hide();
+    $("button.prevButton").hide();
 });

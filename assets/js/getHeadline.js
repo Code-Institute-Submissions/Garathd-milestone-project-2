@@ -1,9 +1,9 @@
 /*global $, addHeadline, moment*/
-var country;
-var category;
-var sources;
+let country;
+let category;
+let sources;
+let search;
 
-//Headline Stuff
 var currentPageHeadline = 1;
 var currentPageSizeHeadline = 100;
 var pageResultHeadline;
@@ -18,13 +18,11 @@ function getHeadlineInfo(args) {
     //Check if pagination has been used
     if (args != "navigation") {
         currentPageHeadline = 1;
+        country = $("#menuCountry option:selected").attr("value");
+        category = $("#menuCategory option:selected").attr("value");
+        sources = $("#menuSources option:selected").attr("value");
+        search = document.getElementById("searchBoxHeadline").value;
     }
-
-    //Input Stuff
-    country = $("#menuCountry option:selected").attr("value");
-    category = $("#menuCategory option:selected").attr("value");
-    sources = $("#menuSources option:selected").attr("value");
-    var search = document.getElementById("searchBoxHeadline").value;
 
     //Default Settings and for Repopulating for no articles found
     if (args == "start") {
