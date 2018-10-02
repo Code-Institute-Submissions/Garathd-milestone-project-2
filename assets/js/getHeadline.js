@@ -155,7 +155,7 @@ function getHeadlineInfo(args) {
 
             //If no articles found
             if (headlineParameters.length == 0) {
-                writeInfo.innerHTML = `<h1 class="no-articles" align="center">No Articles Found!!!</h1>`;
+                writeInfo.innerHTML = `<h1 class="no-articles" align="center">No Articles Found</h1>`;
             }
             else {
                 writeInfo.innerHTML = releases.join('');

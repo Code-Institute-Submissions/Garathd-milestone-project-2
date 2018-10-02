@@ -192,11 +192,11 @@ body {
     padding: 15px !important;
 }
 
-.navbar-inverse .navbar-nav > li > a {
-    color: #fff !important;
+.navbar-brand > a > p{
+ color: #fff !important;
 }
 
-.navbar-brand a, .navbar-brand a:focus, .navbar-brand a:hover{
+.navbar-inverse .navbar-nav > li > a {
     color: #fff !important;
 }
 
