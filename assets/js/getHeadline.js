@@ -1,8 +1,9 @@
-/*global $, addHeadline, moment*/
+/*global $, addHeadline, addPublisher, moment*/
 let country;
 let category;
 let sources;
 let search;
+let multiple = [];
 
 var currentPageHeadline = 1;
 var currentPageSizeHeadline = 100;
@@ -20,8 +21,16 @@ function getHeadlineInfo(args) {
         currentPageHeadline = 1;
         country = $("#menuCountry option:selected").attr("value");
         category = $("#menuCategory option:selected").attr("value");
-        sources = $("#menuSources option:selected").attr("value");
         search = document.getElementById("searchBoxHeadline").value;
+
+        if ($("#menuSources option:selected").attr("value") == "many") {
+            sources = multiple;
+            sources.toString();
+        }
+        else {
+            sources = $("#menuSources option:selected").attr("value");
+            multiple = [];
+        }
     }
 
     //Default Settings and for Repopulating for no articles found
@@ -37,7 +46,7 @@ function getHeadlineInfo(args) {
 
     if (!args) {
 
-        if (country == "all" && category == "all" && sources == "all" && !search) {
+        if (country == "all" && category == "all" && !search && sources == "all" && sources != "many") {
 
             $('#myModal').modal('show');
             $(".modal-title").html("Invalid Search");
@@ -184,6 +193,39 @@ function getHeadlineInfo(args) {
         });
     }
 };
+
+function sourceChange(sel) {
+
+    var writing;
+
+    writing = document.getElementById("checklist");
+
+    var source = [];
+    var args = [];
+
+    if (sel.value == "many") {
+
+        $('#selectModal').modal('show');
+        $(".modal-title").html("Choose Multiple Sources");
+
+        addPublisher(args, function(response) {
+            response.forEach(function(entry) {
+                source.push(`<li class="multiple-item"><label>${entry.name}</label><input type="checkbox" id="myCheck" value="${entry.id}" onclick="checkBox(this)"></li>`);
+                source.join("");
+                writing.innerHTML = source.join('');
+            });
+        });
+
+    }
+}
+
+function checkBox(args) {
+    multiple.push(args.value);
+
+    for (var a = 0; a < multiple.length; a++) {
+        console.log("multiple: " + JSON.stringify(multiple));
+    }
+}
 
 function prevHeadline() {
     var pageResults = document.getElementById("totalResultsInfoHeadline");

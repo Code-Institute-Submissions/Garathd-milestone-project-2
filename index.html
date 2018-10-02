@@ -36,7 +36,9 @@
                     <span class="icon-bar"></span>
                  </button>
                 <div class="navbar-brand">
-                    <a href="index.html"><p>NEWS</p></a>
+                    <a href="index.html">
+                        <p>NEWS</p>
+                    </a>
                 </div>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
@@ -58,7 +60,7 @@
                         <select class="form-control" id="menuCategory"></select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-control" id="menuSources"></select>
+                        <select onchange="sourceChange(this)" class="form-control" id="menuSources"></select>
                     </div>
                     <div class="col-md-2">
                         <input class="form-control" id="searchBoxHeadline" placeholder="Search Headlines" type="text" name="" />
@@ -113,6 +115,27 @@
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
+                <!--Message Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"></h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Modal -->
+
+        <!-- Multiple Select Modal -->
+        <div id="selectModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
@@ -120,7 +143,9 @@
                         <h4 class="modal-title"></h4>
                     </div>
                     <div class="modal-body">
-
+                        <div class="row">
+                            <ul id="checklist"></ul>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

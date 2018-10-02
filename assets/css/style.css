@@ -1,3 +1,22 @@
+#selectModal .modal-dialog{
+    width:95%;
+}
+
+.multiple-item{
+    float:left;
+    padding: 1%;
+    list-style-type: none !important;
+}
+
+.multiple-item label{
+    float:left;
+    font-size: 10px;
+}
+
+.multiple-item > input{
+    float:left;
+}
+
 body {
     font-family: "apercu", sans-serif !important;
 }

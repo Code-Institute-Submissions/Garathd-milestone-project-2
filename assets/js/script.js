@@ -13,19 +13,20 @@ $(document).ready(function() {
     /*Populate Sources Dropdown*/
     function populateSources() {
 
-    
+
         //Checks which page has been selected
         if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-         var sources = document.getElementById("menuSources");
+            var sources = document.getElementById("menuSources");
         }
 
-       else if (window.location.pathname === '/advanced.html') {
-          var sources = document.getElementById("menuSourcesAdvanced");
+        else if (window.location.pathname === '/advanced.html') {
+            var sources = document.getElementById("menuSourcesAdvanced");
         }
 
-       
+
         var source = [];
         source.push("<option id='menuSourceItem' selected value='all'>All Sources</option>");
+        source.push("<option id='menuSourceItem' value='many'>Multiple Sources</option>");
 
         var args = [];
         addPublisher(args, function(response) {
