@@ -192,6 +192,14 @@ body {
     padding: 15px !important;
 }
 
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff !important;
+}
+
+.navbar-brand a, .navbar-brand a:focus, .navbar-brand a:hover{
+    color: #fff !important;
+}
+
 .navbar-toggle {
     display: block;
 }
