@@ -1,8 +1,10 @@
-/*global $, addThings, moment*/
+/*global $, addThings, moment, addPublisher*/
 let sources;
 let language;
 let sort;
 let search;
+let multiple = [];
+
 
 var currentPageSearch = 1;
 var currentPageSizeSearch = 100;
@@ -23,19 +25,47 @@ function getEverythingInfo(args) {
         language = $("#menuLanguages option:selected").attr("value");
         sources = $("#menuSourcesAdvanced option:selected").attr("value");
         search = document.getElementById("adSearch").value;
+
+
+        if ($("#menuSourcesAdvanced option:selected").attr("value") == "many") {
+
+            if (sources == multiple) {
+                sources.toString();
+            }
+            else {
+                sources = multiple;
+                sources.toString();
+                multiple = [];
+            }
+        }
+        else {
+            sources = $("#menuSourcesAdvanced option:selected").attr("value");
+            multiple = [];
+        }
     }
 
 
+    console.log("sources: " + sources);
+    console.log("language: " + language);
+    console.log("sort: " + sort);
+
+
     if (!args) {
-        if (sources == "all" && language == "all" && sort && !search) {
+        if (sources == "all" && language == "all" && !search) {
             $('#myModalTwo').modal('show');
             $(".modal-title").html("Invalid Search");
-            $(".modal-body").html("Try refining the search criteria");
+            $(".modal-body").html("Try refining the search criteria 1");
         }
         else if (sources == "all" && language != "all" && sort && !search) {
             $('#myModalTwo').modal('show');
             $(".modal-title").html("Invalid Search");
-            $(".modal-body").html("Try refining the search criteria");
+            $(".modal-body").html("Try refining the search criteria 2");
+        }
+        else if (sources == "" && multiple.length == 0) {
+            //fix for empty multiple choices
+            sources = "many";
+            console.log("running many test");
+            runNow();
         }
         else {
             runNow();
@@ -178,6 +208,65 @@ function getEverythingInfo(args) {
         });
     }
 };
+
+
+function sourceChange(sel) {
+
+    console.log("check sel: " + sel.value);
+
+    var writing;
+
+    writing = document.getElementById("checklist");
+
+    var source = [];
+    var args = [];
+
+    if (sel.value == "many") {
+
+        $('#selectModalTwo').modal('show');
+        $(".modal-title").html("Choose Multiple Sources");
+
+        if (multiple.length == 0 && writing != null) {
+
+            addPublisher(args, function(response) {
+                response.forEach(function(entry) {
+                    source.push(`<li class="multiple-item"><label>${entry.name}</label><input type="checkbox" id="myCheck" value="${entry.id}" onclick="checkBox(this)"></li>`);
+                    source.join("");
+                    writing.innerHTML = source.join('');
+                });
+            });
+
+        }
+    }
+
+}
+
+function checkBox(args) {
+
+    var result = args.value;
+    var checked = args.checked;
+
+    console.log("value: " + result);
+    console.log("checked: " + checked);
+
+    if (!checked) {
+        for (var a = 0; a < multiple.length; a++) {
+            if (multiple[a] == result) {
+                console.log("already exists");
+                var index = multiple.indexOf(result);
+                multiple.splice(index, 1);
+            }
+        }
+    }
+    else {
+        multiple.push(result);
+    }
+
+    console.log("array: " + JSON.stringify(multiple));
+
+}
+
+
 
 function prevSearch() {
     var pgResults = document.getElementById("totalResultsInfoSearch");

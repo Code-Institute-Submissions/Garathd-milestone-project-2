@@ -5,6 +5,7 @@ let sources;
 let search;
 let multiple = [];
 
+
 var currentPageHeadline = 1;
 var currentPageSizeHeadline = 100;
 var pageResultHeadline;
@@ -24,8 +25,16 @@ function getHeadlineInfo(args) {
         search = document.getElementById("searchBoxHeadline").value;
 
         if ($("#menuSources option:selected").attr("value") == "many") {
-            sources = multiple;
-            sources.toString();
+
+            if (sources == multiple) {
+                sources.toString();
+            }
+            else {
+                sources = multiple;
+                sources.toString();
+                multiple = [];
+            }
+
         }
         else {
             sources = $("#menuSources option:selected").attr("value");
@@ -43,7 +52,6 @@ function getHeadlineInfo(args) {
         $("#totalResultsInfoHeadline").show();
     }
 
-
     if (!args) {
 
         if (country == "all" && category == "all" && !search && sources == "all" && sources != "many") {
@@ -60,6 +68,12 @@ function getHeadlineInfo(args) {
             $(".modal-body").html("You cannot use search with sources if category and country are specified");
 
         }
+        else if (sources == "" && multiple.length == 0) {
+            //fix for empty multiple choices
+            sources = "many";
+            console.log("running many test");
+            runNow();
+        }
         else {
             runNow();
         }
@@ -75,7 +89,6 @@ function getHeadlineInfo(args) {
         $("#loading").show();
 
         var releases = [];
-
         var params = new Array();
 
         params['country'] = country;
@@ -196,9 +209,9 @@ function getHeadlineInfo(args) {
 
 function sourceChange(sel) {
 
-    var writing;
+    console.log("check sel: " + sel.value);
 
-    writing = document.getElementById("checklist");
+    var writing = document.getElementById("checklist");
 
     var source = [];
     var args = [];
@@ -208,23 +221,44 @@ function sourceChange(sel) {
         $('#selectModal').modal('show');
         $(".modal-title").html("Choose Multiple Sources");
 
-        addPublisher(args, function(response) {
-            response.forEach(function(entry) {
-                source.push(`<li class="multiple-item"><label>${entry.name}</label><input type="checkbox" id="myCheck" value="${entry.id}" onclick="checkBox(this)"></li>`);
-                source.join("");
-                writing.innerHTML = source.join('');
-            });
-        });
+        if (multiple.length == 0) {
 
+            addPublisher(args, function(response) {
+                response.forEach(function(entry) {
+                    source.push(`<li class="multiple-item"><label>${entry.name}</label><input type="checkbox" id="myCheck" value="${entry.id}" onclick="checkBox(this)"></li>`);
+                    source.join("");
+                    writing.innerHTML = source.join('');
+                });
+            });
+
+        }
     }
+
 }
 
 function checkBox(args) {
-    multiple.push(args.value);
 
-    for (var a = 0; a < multiple.length; a++) {
-        console.log("multiple: " + JSON.stringify(multiple));
+    var result = args.value;
+    var checked = args.checked;
+
+    console.log("value: " + result);
+    console.log("checked: " + checked);
+
+    if (!checked) {
+        for (var a = 0; a < multiple.length; a++) {
+            if (multiple[a] == result) {
+                console.log("already exists");
+                var index = multiple.indexOf(result);
+                multiple.splice(index, 1);
+            }
+        }
     }
+    else {
+        multiple.push(result);
+    }
+
+    console.log("array: " + JSON.stringify(multiple));
+
 }
 
 function prevHeadline() {
