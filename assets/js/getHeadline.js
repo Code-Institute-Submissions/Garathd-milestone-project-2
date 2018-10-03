@@ -69,10 +69,10 @@ function getHeadlineInfo(args) {
 
         }
         else if (sources == "" && multiple.length == 0) {
-            //fix for empty multiple choices
-            sources = "many";
-            console.log("running many test");
-            runNow();
+            $('#myModal').modal('show');
+            $(".modal-title").html("Invalid Search");
+            $(".modal-body").html("No Sources Specified");
+            sources = "all";
         }
         else {
             runNow();
@@ -221,7 +221,7 @@ function sourceChange(sel) {
         $('#selectModal').modal('show');
         $(".modal-title").html("Choose Multiple Sources");
 
-        if (multiple.length == 0) {
+        if (multiple.length == 0 && writing != null) {
 
             addPublisher(args, function(response) {
                 response.forEach(function(entry) {
