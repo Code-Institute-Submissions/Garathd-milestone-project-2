@@ -4,6 +4,9 @@
 
 .form-control {
     margin-bottom: 2%;
+    border-radius: 0.125rem !important;
+    -moz-radius: 0.125rem !important;
+    -webkit-radius: 0.125rem !important;
 }
 
 .navigation-buttons {

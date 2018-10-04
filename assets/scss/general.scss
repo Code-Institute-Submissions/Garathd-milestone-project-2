@@ -2,6 +2,11 @@ body {
     font-family: "apercu", sans-serif !important;
 }
 
+img{
+    border-radius: 0.125rem;
+    -moz-radius: 0.125rem;
+    -webkit-radius: 0.125rem;
+}
 
 .container,
 .container-fluid {

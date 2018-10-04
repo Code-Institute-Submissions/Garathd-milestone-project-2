@@ -327,7 +327,7 @@ $(document).ready(function() {
 
     //Setting Page Defaults
     document.getElementById("adSearch").value = "";
-    document.getElementById("output").innerHTML = `<h1 class="no-articles" align="center">Search Now</h1>`;
+    document.getElementById("output").innerHTML = `<h1 class="no-articles" align="center">Search For News</h1>`;
 
     //Hiding the previous and next buttons
     $("button.nextButton").hide();
