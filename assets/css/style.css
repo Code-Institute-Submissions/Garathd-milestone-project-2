@@ -1,10 +1,16 @@
+/*Modal Related*/
 #selectModal .modal-dialog, #selectModalTwo .modal-dialog{
     width:95%;
+}
+
+.modal-open {
+    overflow: hidden !important;
 }
 
 .multiple-item{
     float:left;
     padding: 1%;
+    margin-bottom: 5%;
     list-style-type: none !important;
 }
 
@@ -16,6 +22,14 @@
 .multiple-item > input{
     float:left;
 }
+
+
+input[type="checkbox"]{
+    margin: 2px 4px 0 !important;
+}
+
+
+
 
 body {
     font-family: "apercu", sans-serif !important;
