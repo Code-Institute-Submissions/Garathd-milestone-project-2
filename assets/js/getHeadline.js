@@ -188,7 +188,7 @@ function getHeadlineInfo(args) {
             //Show Navigation and Hide the Loading Screen
             $(".headlineMenu").show();
             $("#loading").hide();
-            $(".menu-header").css("background-color", "#f6f6f6");
+            $(".menu-header").css("background-color", "#f7f7f7");
 
             //Show and Hide Previous Button
             if (pageResultHeadline <= 100 || currentPageSizeHeadline <= 100) {

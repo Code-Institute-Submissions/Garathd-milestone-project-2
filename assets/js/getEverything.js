@@ -193,7 +193,7 @@ function getEverythingInfo(args) {
             //Show Navigation and Hide the Loading Screen
             $(".searchMenu").show();
             $("#loading").hide();
-            $(".menu-header").css("background-color", "#f6f6f6");
+            $(".menu-header").css("background-color", "#f7f7f7");
             
              $("#totalResultsInfoSearch").show();
 
@@ -327,7 +327,7 @@ $(document).ready(function() {
 
     //Setting Page Defaults
     document.getElementById("adSearch").value = "";
-    document.getElementById("output").innerHTML = `<h1 class="no-articles" align="center">Search For News</h1>`;
+    document.getElementById("output").innerHTML = `<h1 class="no-articles" align="center">Search For Articles</h1>`;
 
     //Hiding the previous and next buttons
     $("button.nextButton").hide();
