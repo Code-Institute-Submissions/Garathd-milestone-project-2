@@ -26,12 +26,6 @@ function sendThings(args, callback) {
         searchEverything(url);
     }
 
-    //Covers Menu Navigation
-    else if (args.sources == undefined && args.language == undefined && args.sortBy == undefined && !args.q) {
-        url += `q=news&apiKey=${apiKey}`;
-        searchEverything(url);
-    }
-
     else {
 
         if (args.sources != "all" && args.sources) {

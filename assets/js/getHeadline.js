@@ -68,11 +68,9 @@ function getHeadlineInfo(args) {
             $(".modal-body").html("You cannot use search with sources if category and country are specified");
 
         }
+        //Reloads the page but fixes an awkward problem
         else if (sources == "" && multiple.length == 0) {
-            $('#myModal').modal('show');
-            $(".modal-title").html("Invalid Search");
-            $(".modal-body").html("No Sources Specified");
-            sources = "all";
+         window.location.href = 'index.html';
         }
         else {
             runNow();
@@ -212,6 +210,7 @@ function sourceChange(sel) {
     console.log("check sel: " + sel.value);
 
     var writing = document.getElementById("checklist");
+    console.log("writing: " + writing);
 
     var source = [];
     var args = [];
@@ -240,14 +239,11 @@ function checkBox(args) {
 
     var result = args.value;
     var checked = args.checked;
-
-    console.log("value: " + result);
-    console.log("checked: " + checked);
-
+    
+    //This deletes a checkbox entry if box is unclicked
     if (!checked) {
         for (var a = 0; a < multiple.length; a++) {
             if (multiple[a] == result) {
-                console.log("already exists");
                 var index = multiple.indexOf(result);
                 multiple.splice(index, 1);
             }
@@ -256,8 +252,6 @@ function checkBox(args) {
     else {
         multiple.push(result);
     }
-
-    console.log("array: " + JSON.stringify(multiple));
 
 }
 
