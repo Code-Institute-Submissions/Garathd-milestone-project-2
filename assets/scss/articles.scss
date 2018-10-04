@@ -1,0 +1,45 @@
+#sourceList {
+    margin: 2%;
+}
+
+.publisher-name,
+.published-time {
+    float: left;
+}
+
+.published-time {
+    margin-left: 5%;
+}
+
+.picture img {
+    width: 100%;
+    float: left;
+}
+
+.article-post {
+    margin: 2%;
+    margin-bottom: 5%;
+}
+
+.article-title {
+    font-size: 20px;
+    padding-top: 1%;
+    font-weight: bold;
+    clear: both;
+}
+
+.article-description {
+    margin-top: 1%;
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.article-content {
+    margin-top: 1%;
+}
+
+.article-content a {
+    color: #0d47a1;
+    font-weight: bold;
+}

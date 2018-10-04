@@ -1,0 +1,58 @@
+body {
+    font-family: "apercu", sans-serif !important;
+}
+
+
+.container,
+.container-fluid {
+    overflow-x: hidden !important;
+}
+
+.scrollTop {
+    float: right;
+    padding: 1%;
+    padding-top: 1%;
+}
+
+.fa {
+    font-weight: 900;
+    font-size: 30px;
+    color: #2E2E2E;
+    opacity: 0.3;
+}
+
+.btn {
+    font-size: 12px;
+}
+
+.btn-primary {
+    background-color: #4CAF50 !important;
+    border-color: #4CAF50 !important;
+    color: #fff !important;
+}
+
+.btn.btn-link {
+    font-size: 10px !important;
+    color: #0d47a1 !important;
+    float: right !important;
+    margin: -10px 0px 10px 0px !important;
+    font-family: "apercu", sans-serif;
+    font-weight: 600;
+}
+
+.menu-header {
+    margin: 0;
+    padding: 2% 5% 2% 5%;
+    background-color: #f6f6f6;
+    max-height: 310px;
+}
+
+.footer-bar {
+    height: 50px;
+    background-color: transparent;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    overflow: hidden;
+}

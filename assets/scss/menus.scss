@@ -1,0 +1,54 @@
+#navigation {
+    margin-bottom: 5%;
+}
+
+.form-control {
+    margin-bottom: 2%;
+}
+
+.navigation-buttons {
+    text-align: center;
+    margin-top: 3%;
+}
+
+#totalResultsInfoSearch,
+#totalResultsInfoHeadline {
+    float: right;
+}
+
+
+#loading {
+    text-align: center;
+    height: 150px;
+}
+
+#loading img {
+    margin: 0;
+    height: 150px;
+}
+
+.searchButton {
+    width: 100%;
+}
+
+#advancedSearch {
+    margin-top: 2%;
+}
+
+.prevButton {
+    float: left;
+    background: transparent !important;
+    border: none !important;
+}
+
+.nextButton {
+    float: right;
+    background: transparent !important;
+    border: none !important;
+}
+
+#totalResultsInfoSearch,
+#totalResultsInfoHeadline {
+    clear: both;
+    margin-top: 2%;
+}
