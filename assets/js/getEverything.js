@@ -46,18 +46,18 @@ function getEverythingInfo(args) {
 
     //Code for checking the user input matches minimum search criteria for the API
     if (!args) {
-        if (sources == "all" && language == "all" && !search) {
-            $('#myModalTwo').modal('show');
-            $(".modal-title").html("Invalid Search");
-            $(".modal-body").html("Try refining the search criteria 1");
-            console.log("1");
+        if (sources == "all" && !search) {
+            $('#myModalTwo').modal('show').css("width", "600px !important");
+            $(".modal-title").html("Please Try Again");
+            $(".modal-message").html("Choose at least a Source or use the Search");
+            writeInfo.innerHTML = `<h1 class="no-articles" align="center">No Articles Found</h1>`;
+            
+            //Hiding Values
+            $("button.nextButton").hide();
+            $("button.prevButton").hide();
+            $("#totalResultsInfoSearch").hide();
         }
-        else if (sources == "all" && language != "all" && sort && !search) {
-            $('#myModalTwo').modal('show');
-            $(".modal-title").html("Invalid Search");
-            $(".modal-body").html("Try refining the search criteria 2");
-            console.log("2");
-        }
+
         //Reloads the page if no sources are selected
         else if (sources == "" && multiple.length == 0) {
             window.location.href = 'advanced.html';
@@ -71,6 +71,7 @@ function getEverythingInfo(args) {
     }
 
     function runNow() {
+
 
         //Show Loading Screen and Hide Navigation
         $(".searchMenu").hide();
@@ -193,6 +194,8 @@ function getEverythingInfo(args) {
             $(".searchMenu").show();
             $("#loading").hide();
             $(".menu-header").css("background-color", "#f6f6f6");
+            
+             $("#totalResultsInfoSearch").show();
 
             //Show and Hide Previous Button
             if (pageResultSearch <= 100 || currentPageSizeSearch <= 100) {

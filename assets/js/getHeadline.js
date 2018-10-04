@@ -53,15 +53,15 @@ function getHeadlineInfo(args) {
 
     //Code for checking the user input matches minimum search criteria for the API
     if (!args) {
-        if (country == "all" && category == "all" && !search && sources == "all" && sources != "many") {
+        if (country == "all" && category == "all" && !search && sources == "all") {
             $('#myModal').modal('show');
-            $(".modal-title").html("Invalid Search");
-            $(".modal-body").html("You must enter search data or at least choose a Country or Category or Source");
+            $("#myModal .modal-title").html("Please Try Again");
+            $("#myModal .modal-message").html("You must enter search data or at least choose a Country or Category or Source");
         }
         else if ((country != "all" || category != "all") && sources != "all") {
             $('#myModal').modal('show');
-            $(".modal-title").html("Invalid Search");
-            $(".modal-body").html("You cannot use search with sources if category and country are specified");
+            $("#myModal .modal-title").html("Please Try Again");
+            $("#myModal .modal-message").html("You cannot use search with sources if category and country are specified");
         }
         //Reloads the page if no sources are selected
         else if (sources == "" && multiple.length == 0) {
