@@ -5,25 +5,26 @@ let sources;
 let search;
 let multiple = [];
 
-
+//Default Settings for pagination
 var currentPageHeadline = 1;
 var currentPageSizeHeadline = 100;
 var pageResultHeadline;
 
+//Search for Top Headline Data
 function getHeadlineInfo(args) {
-
 
     var pageResults = document.getElementById("totalResultsInfoHeadline");
     var writeInfo = document.getElementById("output");
 
 
-    //Check if pagination has been used
+    //Check if not using pagination
     if (args != "navigation") {
         currentPageHeadline = 1;
         country = $("#menuCountry option:selected").attr("value");
         category = $("#menuCategory option:selected").attr("value");
         search = document.getElementById("searchBoxHeadline").value;
 
+        //This is to check if the Multiple Sources field is being used for searching
         if ($("#menuSources option:selected").attr("value") == "many") {
 
             if (sources == multiple) {
@@ -32,17 +33,15 @@ function getHeadlineInfo(args) {
             else {
                 sources = multiple;
                 sources.toString();
-                multiple = [];
             }
 
         }
         else {
             sources = $("#menuSources option:selected").attr("value");
-            multiple = [];
         }
     }
 
-    //Default Settings and for Repopulating for no articles found
+    //Default Settings and for Repopulating for when no Articles are found
     if (args == "start") {
         country = "gb";
         search = "";
@@ -52,25 +51,21 @@ function getHeadlineInfo(args) {
         $("#totalResultsInfoHeadline").show();
     }
 
+    //Code for checking the user input matches minimum search criteria for the API
     if (!args) {
-
         if (country == "all" && category == "all" && !search && sources == "all" && sources != "many") {
-
             $('#myModal').modal('show');
             $(".modal-title").html("Invalid Search");
             $(".modal-body").html("You must enter search data or at least choose a Country or Category or Source");
-
         }
         else if ((country != "all" || category != "all") && sources != "all") {
-
             $('#myModal').modal('show');
             $(".modal-title").html("Invalid Search");
             $(".modal-body").html("You cannot use search with sources if category and country are specified");
-
         }
-        //Reloads the page but fixes an awkward problem
+        //Reloads the page if no sources are selected
         else if (sources == "" && multiple.length == 0) {
-         window.location.href = 'index.html';
+            window.location.href = 'index.html';
         }
         else {
             runNow();
@@ -82,27 +77,31 @@ function getHeadlineInfo(args) {
 
     function runNow() {
 
-        //Show Loading Screen and hide Navigation
+        //Show Loading Screen and Hide Navigation
         $(".headlineMenu").hide();
         $("#loading").show();
+        $(".menu-header").css("background-color", "#ffffff");
 
         var releases = [];
         var params = new Array();
 
+        //Setting search parameters from user input
         params['country'] = country;
         params['category'] = category;
         params['sources'] = sources;
         params['q'] = search;
         params['page'] = currentPageHeadline;
 
+        //Sending up search parameters to the api
         addHeadline(params, function(response) {
 
             var headlineParameters = response.articles;
 
+            //Total Articles Found
             pageResultHeadline = response.totalResults;
 
+            //Code for Page Results
             if (!args) {
-                //Total Results for Pagnation    
                 if (currentPageSizeHeadline > pageResultHeadline || pageResultHeadline <= 100) {
                     currentPageSizeHeadline = pageResultHeadline;
                     pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeHeadline + " / " + pageResultHeadline;
@@ -126,25 +125,29 @@ function getHeadlineInfo(args) {
                 pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeHeadline + " / " + pageResultHeadline;
             }
 
+            //Iterating through the search results array
             headlineParameters.forEach(function(entry) {
                 var formatDate = entry.publishedAt;
                 var responseDate = moment(formatDate).format('DD/MM/YYYY');
 
                 var articleInfo = entry;
 
-                //Some Code Checks and Fixes
+                //If no article image then use placeholder image
                 if (articleInfo.urlToImage == null) {
                     articleInfo.urlToImage = "assets/images/empty.png";
                 }
 
+                //If no description then display default message
                 if (articleInfo.description == null) {
                     articleInfo.description = "No Description";
                 }
 
+                //If no content returned via the api then use default message for link to the original article
                 if (articleInfo.content == null) {
                     articleInfo.content = "Read More";
                 }
 
+                //Pushing HTML and Article Fields into an Array
                 releases.push(`<div class="article-post">
                         <div class="row">
                             <div class="col-md-3">
@@ -173,19 +176,21 @@ function getHeadlineInfo(args) {
                     </div>`);
             });
 
-            //If no articles found
+            //No articles found
             if (headlineParameters.length == 0) {
                 writeInfo.innerHTML = `<h1 class="no-articles" align="center">No Articles Found</h1>`;
             }
             else {
+                //Outputs the Search Results to the Page and gets rid of any commas from between each article
                 writeInfo.innerHTML = releases.join('');
             }
 
-
+            //Show Navigation and Hide the Loading Screen
             $(".headlineMenu").show();
             $("#loading").hide();
+            $(".menu-header").css("background-color", "#f6f6f6");
 
-            //Check the Navigation
+            //Show and Hide Previous Button
             if (pageResultHeadline <= 100 || currentPageSizeHeadline <= 100) {
                 $("button.prevButton").hide();
             }
@@ -193,7 +198,7 @@ function getHeadlineInfo(args) {
                 $("button.prevButton").show();
             }
 
-
+            //Show and Hide Next Button
             if (pageResultHeadline <= 100 || pageResultHeadline == currentPageSizeHeadline) {
                 $("button.nextButton").hide();
             }
@@ -205,12 +210,11 @@ function getHeadlineInfo(args) {
     }
 };
 
+//Function for when source information changes
 function sourceChange(sel) {
 
-    console.log("check sel: " + sel.value);
-
+    //Get data from select field
     var writing = document.getElementById("checklist");
-    console.log("writing: " + writing);
 
     var source = [];
     var args = [];
@@ -222,6 +226,7 @@ function sourceChange(sel) {
 
         if (multiple.length == 0 && writing != null) {
 
+            //Populates the Multiple Sources Modal with all the Publishers
             addPublisher(args, function(response) {
                 response.forEach(function(entry) {
                     source.push(`<li class="multiple-item"><label>${entry.name}</label><input type="checkbox" id="myCheck" value="${entry.id}" onclick="checkBox(this)"></li>`);
@@ -229,17 +234,21 @@ function sourceChange(sel) {
                     writing.innerHTML = source.join('');
                 });
             });
-
         }
     }
-
 }
 
+//Adds a value to an array to see what checkboxes have been checked
 function checkBox(args) {
 
+
+
+    //To get the value of the checked box
     var result = args.value;
+
+    //To see if a box is checked
     var checked = args.checked;
-    
+
     //This deletes a checkbox entry if box is unclicked
     if (!checked) {
         for (var a = 0; a < multiple.length; a++) {
@@ -250,12 +259,15 @@ function checkBox(args) {
         }
     }
     else {
+        //Puts all the checkbox choices in an array to be used for searches
         multiple.push(result);
     }
 
 }
 
 function prevHeadline() {
+
+    //This is where the current list of pages and the total amount of articles is displayed
     var pageResults = document.getElementById("totalResultsInfoHeadline");
 
     if (currentPageHeadline > 1) {
@@ -279,13 +291,14 @@ function prevHeadline() {
 
 function nextHeadline() {
 
-
+    //This is where the current list of pages and the total amount of articles is displayed
     var pageResults = document.getElementById("totalResultsInfoHeadline");
 
     if ((pageResultHeadline / 100 > 1) && (pageResultHeadline > currentPageSizeHeadline)) {
         currentPageHeadline++;
         currentPageSizeHeadline = currentPageSizeHeadline + 100;
 
+        //Search using pagination
         getHeadlineInfo("navigation");
 
         pageResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeHeadline + " / " + pageResultHeadline;
@@ -300,5 +313,7 @@ function nextHeadline() {
 }
 
 $(document).ready(function() {
+
+    //Starts the page with default information
     getHeadlineInfo("start");
 });

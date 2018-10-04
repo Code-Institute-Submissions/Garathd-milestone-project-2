@@ -18,7 +18,7 @@
   float: left; }
 
 input[type="checkbox"] {
-  margin: 2px 4px 0 !important; }
+  margin: 0px 4px 0 !important; }
 
 #sourceList {
   margin: 2%; }
@@ -72,6 +72,7 @@ input[type="checkbox"] {
   float: right; }
 
 #loading {
+  margin-top: 15%;
   text-align: center;
   height: 150px; }
 
