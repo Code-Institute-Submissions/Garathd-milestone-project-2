@@ -70,7 +70,7 @@
                         <select onchange="sourceChange(this)" class="form-control" id="menuSources"></select>
                     </div>
                     <div class="col-md-2">
-                        <input class="form-control" id="searchBoxHeadline" placeholder="Search Headlines" type="text" name="" />
+                        <input class="form-control" onkeyup="alphanumericsonly(this)" id="searchBoxHeadline" placeholder="Search Headlines" type="text" name="" />
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-primary" id="searchButtonHeadline" class="searchButton" onclick="getHeadlineInfo()">Search</button>

@@ -15,6 +15,14 @@ function getMenuItems(callback) {
     });
 };
 
+//Regex for alphanumeric data only used on search fields
+function alphanumericsonly(ob) {
+    var invalidChars = /([^A-Za-z0-9])/
+    if (invalidChars.test(ob.value)) {
+        ob.value = ob.value.replace(invalidChars, "");
+    }
+};
+
 $(window).scroll(function() {
     if ($(this).scrollTop() > 300) {
         $('.scrollTop').show();
