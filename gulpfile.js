@@ -1,6 +1,7 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify');
+var sass = require('gulp-sass');
 
 //Concat The Advanced Search Stuff
 gulp.task('concat-advanced', function() {
@@ -42,6 +43,17 @@ gulp.task('compress-headline', function() {
         }))
         .pipe(gulp.dest('dist/js/headlines/min/'))
 });
+
+gulp.task('sass', function () {
+  return gulp.src('assets/scss/style.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('assets/css/'));
+});
+ 
+gulp.task('sass:watch', function () {
+  gulp.watch('assets/scss/*.scss', ['sass']);
+});
+
 
 gulp.task('concat', ['concat-headline', 'concat-advanced']);
 gulp.task('compress', ['compress-headline', 'compress-advanced']);

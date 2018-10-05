@@ -62,7 +62,7 @@ input[type="checkbox"] {
 
 .no-articles {
   font-family: "Helvetica" !important;
-  margin-top: 2.5em !important; }
+  margin-top: 2em; }
 
 #navigation {
   margin-bottom: 5%; }
