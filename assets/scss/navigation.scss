@@ -1,5 +1,5 @@
 .navbar {
-    border-radius: 0px !important;
+    @include borderRadius(0);
     margin-bottom: 0px !important;
 }
 
@@ -13,19 +13,20 @@
 }
 
 .navbar-brand {
-    font-family: "apercu", sans-serif !important;
-    font-size: 30px !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    padding: 15px !important;
+    font-family: $main-font;
+    font-size: 30px;
+    font-weight: 600;
+    color: #ffffff ;
+    padding: 15px;
+    margin-left: 15px !important;
 }
 
 .navbar-brand > a > p{
- color: #fff !important;
+ color: #fff;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-    color: #fff !important;
+    color: #fff;
 }
 
 .navbar-toggle {
@@ -43,7 +44,7 @@
 }
 
 .navbar-collapse.collapse {
-    display: none!important;
+    display: none !important;
 }
 
 .navbar-nav {

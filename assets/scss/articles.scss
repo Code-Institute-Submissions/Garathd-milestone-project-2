@@ -40,10 +40,10 @@
 }
 
 .article-content a {
-    color: #0d47a1;
+    color: $link-color;
     font-weight: bold;
 }
 
 .no-articles{
-    font-family: "Helvetica" !important;
+    font-family: $secondary-font;
 }

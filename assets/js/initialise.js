@@ -41,4 +41,7 @@ $(document).ready(function() {
 
     });
 
+    $("button.nextButton").hide();
+    $("button.prevButton").hide();
+
 });

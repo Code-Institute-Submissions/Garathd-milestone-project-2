@@ -11,9 +11,7 @@
 
 .form-control {
     margin-bottom: 2%;
-    border-radius: 0.125rem !important;
-    -moz-radius: 0.125rem !important;
-    -webkit-radius: 0.125rem !important;
+    @include borderRadius(0.125rem);
 }
 
 .navigation-buttons {
@@ -42,7 +40,7 @@
     width: 100%;
 }
 
-#advancedSearch {
+#advancedSearch, #headlineSearch {
     margin-top: 2%;
 }
 

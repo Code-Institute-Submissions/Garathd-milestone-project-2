@@ -1,11 +1,9 @@
 body {
-    font-family: "apercu", sans-serif !important;
+    font-family: $main-font;
 }
 
 img{
-    border-radius: 0.125rem;
-    -moz-radius: 0.125rem;
-    -webkit-radius: 0.125rem;
+    @include borderRadius(0.125rem);
 }
 
 .container,
@@ -31,18 +29,9 @@ img{
 }
 
 .btn-primary {
-    background-color: #4CAF50 !important;
-    border-color: #4CAF50 !important;
+    background-color: $button-color;
+    border-color: $button-color;
     color: #fff !important;
-}
-
-.btn.btn-link {
-    font-size: 10px !important;
-    color: #0d47a1 !important;
-    float: right !important;
-    margin: -10px 0px 10px 0px !important;
-    font-family: "apercu", sans-serif;
-    font-weight: 600;
 }
 
 .footer-bar {
