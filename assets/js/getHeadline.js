@@ -152,7 +152,7 @@ function getHeadlineInfo(args) {
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="picture">
-                                    <img src="${articleInfo.urlToImage}"></img>
+                                    <img alt="${articleInfo.title}" src="${articleInfo.urlToImage}"></img>
                                 </div>
                             </div>
                             <div class="col-md-9">

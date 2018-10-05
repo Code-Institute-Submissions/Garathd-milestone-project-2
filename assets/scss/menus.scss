@@ -36,6 +36,65 @@
     height: 150px;
 }
 
+#advancedSearch, #headlineSearch {
+    margin-top: 2%;
+}
+
+.prevButton {
+    float: left;
+    background: transparent !important;
+    border: none !important;
+}
+
+.nextButton {
+    float: right;
+    background: transparent !important;
+    border: none !important;
+}
+
+#totalResultsInfoSearch,
+#totalResultsInfoHeadline {
+    clear: both;
+    margin-top: 2%;
+}
+#navigation {
+    margin-bottom: 5%;
+}
+
+.menu-header {
+    margin: 0;
+    padding: 2% 5% 2% 5%;
+    background-color: #f7f7f7;
+    max-height: 310px;
+}
+
+.form-control {
+    margin-bottom: 2%;
+    @include borderRadius(0.125rem);
+}
+
+.navigation-buttons {
+    text-align: center;
+    margin-top: 3%;
+}
+
+#totalResultsInfoSearch,
+#totalResultsInfoHeadline {
+    float: right;
+}
+
+
+#loading {
+    margin-top: 5%;
+    text-align: center;
+    height: 150px;
+}
+
+#loading img {
+    margin: 0;
+    height: 150px;
+}
+
 .searchButton {
     width: 100%;
 }

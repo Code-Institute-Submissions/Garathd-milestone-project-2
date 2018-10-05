@@ -16,19 +16,19 @@ $(document).ready(function() {
             countryArray.forEach(function(entry) {
 
                 if (entry.id == "gb") {
-                    countries.push(`<option id="menuCountryItem" selected value="${entry.id}">${entry.name}</option>`);
-                    country.innerHTML = `${countries}`;
+                    countries.push(`<option selected value="${entry.id}">${entry.name}</option>`);
+                    country.innerHTML = countries.join('');
                 }
 
                 else {
-                    countries.push(`<option id="menuCountryItem" value="${entry.id}">${entry.name}</option>`);
-                    country.innerHTML = `${countries}`;
+                    countries.push(`<option value="${entry.id}">${entry.name}</option>`);
+                    country.innerHTML = countries.join('');
                 }
             });
             
             categoryArray.forEach(function(entry) {
-                categories.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
-                category.innerHTML = `${categories}`;
+                categories.push(`<option value="${entry.id}">${entry.name}</option>`);
+                category.innerHTML = categories.join('');
             });
         });
     }

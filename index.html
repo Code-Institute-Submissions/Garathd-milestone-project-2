@@ -70,10 +70,10 @@
                         <select onchange="sourceChange(this)" class="form-control" id="menuSources"></select>
                     </div>
                     <div class="col-md-2">
-                        <input class="form-control" onkeyup="alphanumericsonly(this)" id="searchBoxHeadline" placeholder="Search Headlines" type="text" name="" />
+                        <input class="form-control" onkeyup="alphanumericsonly(this)" id="searchBoxHeadline" placeholder="Search Headlines" type="text"/>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-primary" id="searchButtonHeadline" class="searchButton" onclick="getHeadlineInfo()">Search</button>
+                        <button class="btn btn-primary" id="searchButtonHeadline" onclick="getHeadlineInfo()">Search</button>
                     </div>
                 </div>
             </div>
@@ -82,7 +82,7 @@
         <div id="loading">
             <div class="row">
                 <div class="col-md-12">
-                    <img src="assets/images/loading.gif"></img>
+                    <img alt="loading" src="assets/images/loading.gif">
                 </div>
             </div>
         </div>
@@ -108,6 +108,7 @@
                 </div>
             </div>
         </div>
+        
         <!-- Output -->
         <div class="row">
             <div class="col-md-12">
@@ -124,7 +125,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"></h4>
+                        <p class="modal-title"></p>
                     </div>
                     <div class="modal-message"></div>
                     <div class="modal-footer">
@@ -140,7 +141,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"></h4>
+                        <p class="modal-title"></p>
                     </div>
                     <div class="modal-body">
                         <div class="row">

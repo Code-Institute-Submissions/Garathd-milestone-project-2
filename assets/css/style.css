@@ -7,6 +7,9 @@
 .modal-open {
   overflow: hidden !important; }
 
+.modal-title {
+  font-size: 19px !important; }
+
 .multiple-item {
   float: left;
   padding: 1%;
@@ -62,7 +65,58 @@ input[type="checkbox"] {
 
 .no-articles {
   font-family: "Helvetica" !important;
-  margin-top: 2.5em !important; }
+  margin-top: 2.5em !important;
+  font-size: 30px; }
+
+#navigation {
+  margin-bottom: 5%; }
+
+.menu-header {
+  margin: 0;
+  padding: 2% 5% 2% 5%;
+  background-color: #f7f7f7;
+  max-height: 310px; }
+
+.form-control {
+  margin-bottom: 2%;
+  border-radius: 0.125rem !important;
+  -moz-radius: 0.125rem !important;
+  -webkit-radius: 0.125rem !important; }
+
+.navigation-buttons {
+  text-align: center;
+  margin-top: 3%; }
+
+#totalResultsInfoSearch,
+#totalResultsInfoHeadline {
+  float: right; }
+
+#loading {
+  margin-top: 5%;
+  text-align: center;
+  height: 150px; }
+
+#loading img {
+  margin: 0;
+  height: 150px; }
+
+#advancedSearch, #headlineSearch {
+  margin-top: 2%; }
+
+.prevButton {
+  float: left;
+  background: transparent !important;
+  border: none !important; }
+
+.nextButton {
+  float: right;
+  background: transparent !important;
+  border: none !important; }
+
+#totalResultsInfoSearch,
+#totalResultsInfoHeadline {
+  clear: both;
+  margin-top: 2%; }
 
 #navigation {
   margin-bottom: 5%; }
@@ -200,8 +254,8 @@ img {
 
 .btn-primary {
   background-color: #4CAF50 !important;
-  border-color: #4CAF50 !important;
-  color: #fff !important; }
+  color: #fff !important;
+  margin-top: 0px !important; }
 
 .footer-bar {
   height: 50px;

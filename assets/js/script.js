@@ -25,14 +25,14 @@ $(document).ready(function() {
 
 
         var source = [];
-        source.push("<option id='menuSourceItem' selected value='all'>All Sources</option>");
-        source.push("<option id='menuSourceItem' value='many'>Multiple Sources</option>");
+        source.push("<option selected value='all'>All Sources</option>");
+        source.push("<option value='many'>Multiple Sources</option>");
 
         var args = [];
         addPublisher(args, function(response) {
             response.forEach(function(entry) {
-                source.push(`<option id="menuSourceItem" value="${entry.id}">${entry.name}</option>`);
-                sources.innerHTML = `${source}`;
+                source.push(`<option value="${entry.id}">${entry.name}</option>`);
+                sources.innerHTML = source.join('');
             });
         });
     }
