@@ -1,4 +1,4 @@
-/* global $, getMenuItems, */
+/* global $, getMenuItems, project*/
 $(document).ready(function() {
     const host = window.location.host;
 
@@ -6,7 +6,7 @@ $(document).ready(function() {
      console.log("window.location.pathname: " + window.location.pathname);
     
     //Setting up the select fields for the homepage
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+    if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
         var countries = [];
         var categories = [];
 
@@ -34,7 +34,7 @@ $(document).ready(function() {
     }
 
     //Setting up the select fields for the homepage
-    else if (window.location.pathname === '/advanced.html') {
+    else if (window.location.pathname === `${project}advanced.html`) {
         var languages = [];
         var sortBy = [];
 
