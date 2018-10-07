@@ -1,8 +1,8 @@
-/* global $, getMenuItems*/
+/* global $, getMenuItems, gitPage*/
 $(document).ready(function() {
 
     //Setting up the select fields for the homepage
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname == gitPage || window.location.pathname == gitPage + 'index.html') {
         var countries = [];
         var categories = [];
 
@@ -17,10 +17,10 @@ $(document).ready(function() {
 
             //Populating the Country Select Field
             countryArray.forEach(function(entry) {
-                    countries.push(`<option selected value="${entry.id}">${entry.name}</option>`);
-                    country.innerHTML = countries.join('');
+                countries.push(`<option selected value="${entry.id}">${entry.name}</option>`);
+                country.innerHTML = countries.join('');
             });
-            
+
             //Populating the Category Select Field
             categoryArray.forEach(function(entry) {
                 categories.push(`<option value="${entry.id}">${entry.name}</option>`);
@@ -30,7 +30,7 @@ $(document).ready(function() {
     }
 
     //Setting up the select fields for the homepage
-    else if (window.location.pathname === '/advanced.html') {
+    else if (window.location.pathname === '/advanced.html' || window.location.pathname == gitPage + 'advanced.html') {
         var languages = [];
         var sortBy = [];
 
