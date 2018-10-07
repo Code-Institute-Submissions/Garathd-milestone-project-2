@@ -1,38 +1,7 @@
 /* global $*/
 const apiKey = "32ad11f7baf84533819d0089abe5c95c";
 const apiSource = "https://newsapi.org/v2/";
-const gitPage = "https://garathd.github.io/milestone-project-2/";
 /*-----------------------------------------------*/
-
-var homepage;
-var host;
-
-
-//For Github Pages Only
-if (window.location.pathname == gitPage || window.location.pathname == gitPage + 'index.html') {
-    host = "server";
-    console.log("Home Page Server");
-}
-
-else if (window.location.pathname == gitPage + 'advanced.html') {
-    host = "server";
-    console.log("Advanced Page Server");
-
-}
-
-//For Local Server (Cloud 9)
-else if (window.location.pathname == '/' || window.location.pathname == '/index.html') {
-    host = "local";
-    homepage = true;
-    console.log("Home Page Local");
-}
-
-else if (window.location.pathname == '/advanced.html') {
-    host = "local";
-    homepage = false;
-    console.log("Advanced Page Local");
-}
-
 
 //Getting JSON Data for the Select Fields
 function getMenuItems(callback) {

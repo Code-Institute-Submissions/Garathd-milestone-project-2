@@ -1,8 +1,12 @@
-/* global $, getMenuItems, gitPage*/
+/* global $, getMenuItems, */
 $(document).ready(function() {
+    const host = window.location.host;
 
+    console.log("window.location.host: " + host);
+     console.log("window.location.pathname: " + window.location.pathname);
+    
     //Setting up the select fields for the homepage
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html' || window.location.pathname == gitPage || window.location.pathname == gitPage + 'index.html') {
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
         var countries = [];
         var categories = [];
 
@@ -30,7 +34,7 @@ $(document).ready(function() {
     }
 
     //Setting up the select fields for the homepage
-    else if (window.location.pathname === '/advanced.html' || window.location.pathname == gitPage + 'advanced.html') {
+    else if (window.location.pathname === '/advanced.html') {
         var languages = [];
         var sortBy = [];
 
