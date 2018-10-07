@@ -1,7 +1,7 @@
 /*global $, addPublisher, getHeadlineInfo, populateSources*/
 
 
-console.log("Debugging current page: " + window.location.pathname);
+console.log("Debugging current page: " + window.location.href);
 
 //Navigates to homepage
 function searchHeadline() {
