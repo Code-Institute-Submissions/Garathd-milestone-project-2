@@ -1,13 +1,15 @@
 /* global $*/
 const apiKey = "32ad11f7baf84533819d0089abe5c95c";
 const apiSource = "https://newsapi.org/v2/";
+const project = "/milestone-project-2/";
 /*-----------------------------------------------*/
 
 //Getting JSON Data for the Select Fields
 function getMenuItems(callback) {
 
     var array = new Array();
-    $.getJSON("assets/data/menu.json", function(data) {
+
+    $.getJSON(`${project}assets/data/menu.json`, function(data) {
         $.each(data, function(index, value) {
             array.push(value);
         });
@@ -39,7 +41,7 @@ $(document).ready(function() {
     //Initially hide the loading screen and the scroll to top button
     $("#loading").hide();
     $('.scrollTop').hide();
-    
+
     //Scroll to top button
     var scrollTop = $(".scrollTop");
 

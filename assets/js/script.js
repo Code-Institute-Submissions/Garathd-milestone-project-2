@@ -1,7 +1,4 @@
-/*global $, addPublisher, getHeadlineInfo, populateSources*/
-
-//Variable for Git Pages
-var gitPath = "/milestone-project-2";
+/*global $, addPublisher, getHeadlineInfo, populateSources, project*/
 
 //Navigates to homepage
 function searchHeadline() {
@@ -15,28 +12,22 @@ function advancedSearch() {
 
 $(document).ready(function() {
 
+
     /*Populate Sources Dropdown*/
     function populateSources() {
 
+        var sources;
 
         //Checks which page has been selected
 
-        //For Github Pages Only
-        if (window.location.pathname == gitPath + '/' || window.location.pathname == gitPath + '/index.html') {
-            var sources = document.getElementById("menuSources");
-        }
-
-        else if (window.location.pathname == gitPath + '/advanced.html') {
-            var sources = document.getElementById("menuSourcesAdvanced");
-        }
 
         //For Local Server (Cloud 9)
-        else if (window.location.pathname == '/' || window.location.pathname == '/index.html') {
-            var sources = document.getElementById("menuSources");
+         if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
+             sources = document.getElementById("menuSources");
         }
 
-        else if (window.location.pathname == '/advanced.html') {
-            var sources = document.getElementById("menuSourcesAdvanced");
+        else if (window.location.pathname == `${project}advanced.html`) {
+             sources = document.getElementById("menuSourcesAdvanced");
         }
 
         var source = [];

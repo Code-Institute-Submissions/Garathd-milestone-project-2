@@ -1,13 +1,15 @@
 /* global $*/
 const apiKey = "32ad11f7baf84533819d0089abe5c95c";
 const apiSource = "https://newsapi.org/v2/";
+const project = "/milestone-project-2/";
 /*-----------------------------------------------*/
 
 //Getting JSON Data for the Select Fields
 function getMenuItems(callback) {
 
     var array = new Array();
-    $.getJSON("assets/data/menu.json", function(data) {
+
+    $.getJSON(`${project}assets/data/menu.json`, function(data) {
         $.each(data, function(index, value) {
             array.push(value);
         });
@@ -39,7 +41,7 @@ $(document).ready(function() {
     //Initially hide the loading screen and the scroll to top button
     $("#loading").hide();
     $('.scrollTop').hide();
-    
+
     //Scroll to top button
     var scrollTop = $(".scrollTop");
 
@@ -56,11 +58,11 @@ $(document).ready(function() {
     $("button.prevButton").hide();
 });
 
-/* global $, getMenuItems*/
+/* global $, getMenuItems, project*/
 $(document).ready(function() {
-
+    
     //Setting up the select fields for the homepage
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+    if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
         var countries = [];
         var categories = [];
 
@@ -75,10 +77,10 @@ $(document).ready(function() {
 
             //Populating the Country Select Field
             countryArray.forEach(function(entry) {
-                    countries.push(`<option selected value="${entry.id}">${entry.name}</option>`);
-                    country.innerHTML = countries.join('');
+                countries.push(`<option selected value="${entry.id}">${entry.name}</option>`);
+                country.innerHTML = countries.join('');
             });
-            
+
             //Populating the Category Select Field
             categoryArray.forEach(function(entry) {
                 categories.push(`<option value="${entry.id}">${entry.name}</option>`);
@@ -88,7 +90,7 @@ $(document).ready(function() {
     }
 
     //Setting up the select fields for the homepage
-    else if (window.location.pathname === '/advanced.html') {
+    else if (window.location.pathname === `${project}advanced.html`) {
         var languages = [];
         var sortBy = [];
 
@@ -512,7 +514,7 @@ function addThings(args, callback) {
 
 };
 
-/*global $, addPublisher, getHeadlineInfo, populateSources*/
+/*global $, addPublisher, getHeadlineInfo, populateSources, project*/
 
 //Navigates to homepage
 function searchHeadline() {
@@ -526,17 +528,22 @@ function advancedSearch() {
 
 $(document).ready(function() {
 
+
     /*Populate Sources Dropdown*/
     function populateSources() {
 
+        var sources;
 
         //Checks which page has been selected
-        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
-            var sources = document.getElementById("menuSources");
+
+
+        //For Local Server (Cloud 9)
+         if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
+             sources = document.getElementById("menuSources");
         }
 
-        else if (window.location.pathname === '/advanced.html') {
-            var sources = document.getElementById("menuSourcesAdvanced");
+        else if (window.location.pathname == `${project}advanced.html`) {
+             sources = document.getElementById("menuSourcesAdvanced");
         }
 
         var source = [];
@@ -554,7 +561,7 @@ $(document).ready(function() {
             });
         });
     }
-    
+
     //Populates the sources select field upon start up
     populateSources();
 });
