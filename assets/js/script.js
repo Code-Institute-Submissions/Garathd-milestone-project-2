@@ -11,7 +11,7 @@ function advancedSearch() {
 }
 
 $(document).ready(function() {
-    var sources;
+   
 
     /*Populate Sources Dropdown*/
     function populateSources() {
@@ -21,11 +21,11 @@ $(document).ready(function() {
 
         //For Github Pages Only
         if (window.location.pathname == gitPage + '/' || window.location.pathname == gitPage + 'index.html' || window.location.pathname == '/' || window.location.pathname == '/index.html') {
-            sources = document.getElementById("menuSources");
+           var sources = document.getElementById("menuSources");
         }
 
-        else if (window.location.pathname == gitPage + '/advanced.html' || window.location.pathname == '/advanced.html') {
-            sources = document.getElementById("menuSourcesAdvanced");
+        else if (window.location.pathname == gitPage + 'advanced.html' || window.location.pathname == '/advanced.html') {
+           var sources = document.getElementById("menuSourcesAdvanced");
         }
 
         var source = [];
