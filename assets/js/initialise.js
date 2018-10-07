@@ -56,7 +56,7 @@ function getMenuItems(callback) {
 
     else if (check == "server") {
         console.log("IS Server");
-        $.getJSON(`${gitPath}/assets/data/menu.json`, function(data) {
+        $.getJSON(`${gitPath}assets/data/menu.json`, function(data) {
             $.each(data, function(index, value) {
                 array.push(value);
             });
