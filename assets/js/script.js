@@ -40,9 +40,7 @@ $(document).ready(function() {
             });
         });
     }
-});
-
-$(document).ready(function() {
+    
     //Populates the sources select field upon start up
     populateSources();
 });

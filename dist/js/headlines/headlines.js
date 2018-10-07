@@ -3,10 +3,10 @@ const apiKey = "32ad11f7baf84533819d0089abe5c95c";
 const apiSource = "https://newsapi.org/v2/";
 /*-----------------------------------------------*/
 
+//Getting JSON Data for the Select Fields
 function getMenuItems(callback) {
 
     var array = new Array();
-
     $.getJSON("assets/data/menu.json", function(data) {
         $.each(data, function(index, value) {
             array.push(value);
@@ -23,6 +23,7 @@ function alphanumericsonly(ob) {
     }
 };
 
+//Shows and Hides the scroll to top button
 $(window).scroll(function() {
     if ($(this).scrollTop() > 300) {
         $('.scrollTop').show();
@@ -35,10 +36,11 @@ $(window).scroll(function() {
 
 $(document).ready(function() {
 
-    //$("#headlineSearch").hide();
+    //Initially hide the loading screen and the scroll to top button
     $("#loading").hide();
     $('.scrollTop').hide();
-
+    
+    //Scroll to top button
     var scrollTop = $(".scrollTop");
 
     $(scrollTop).click(function() {
@@ -49,97 +51,77 @@ $(document).ready(function() {
 
     });
 
+    //By Default hide the previous and next buttons
     $("button.nextButton").hide();
     $("button.prevButton").hide();
-
 });
 
 /* global $, getMenuItems*/
 $(document).ready(function() {
 
+    //Setting up the select fields for the homepage
     if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
         var countries = [];
         var categories = [];
 
+        //Getting the id's of selectfields
         var country = document.getElementById("menuCountry");
         var category = document.getElementById("menuCategory");
 
+        //Getting the JSON data
         getMenuItems(function(response) {
             var countryArray = response[1];
             var categoryArray = response[0];
 
-
+            //Populating the Country Select Field
             countryArray.forEach(function(entry) {
-
-                if (entry.id == "gb") {
-                    countries.push(`<option id="menuCountryItem" selected value="${entry.id}">${entry.name}</option>`);
-                    country.innerHTML = `${countries}`;
-                }
-
-                else {
-                    countries.push(`<option id="menuCountryItem" value="${entry.id}">${entry.name}</option>`);
-                    country.innerHTML = `${countries}`;
-                }
+                    countries.push(`<option selected value="${entry.id}">${entry.name}</option>`);
+                    country.innerHTML = countries.join('');
             });
             
+            //Populating the Category Select Field
             categoryArray.forEach(function(entry) {
-                categories.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
-                category.innerHTML = `${categories}`;
+                categories.push(`<option value="${entry.id}">${entry.name}</option>`);
+                category.innerHTML = categories.join('');
             });
         });
     }
 
-
+    //Setting up the select fields for the homepage
     else if (window.location.pathname === '/advanced.html') {
         var languages = [];
         var sortBy = [];
 
+        //Getting the id's of selectfields
         var language = document.getElementById("menuLanguages");
         var sort = document.getElementById("menuSortBy");
 
+        //Getting the JSON data
         getMenuItems(function(response) {
             var sortArray = response[3];
             var languageArray = response[2];
 
-
+            //Populating the Language Select Field
             languageArray.forEach(function(entry) {
                 languages.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
                 language.innerHTML = `${languages}`;
             });
 
+            //Populating the SortBy Select Field
             sortArray.forEach(function(entry) {
                 sortBy.push(`<option id="menuCategoryItem" value="${entry.id}">${entry.name}</option>`);
                 sort.innerHTML = `${sortBy}`;
             });
         });
     }
-
-
 });
 
 /*global apiSource,apiKey,$*/
-
-
-var publisherInfo;
-
-const publisher = {
-
-    getPublisherInfo() {
-        return publisherInfo;
-    },
-
-    setPublisherInfo(args) {
-        publisherInfo = args;
-    }
-};
-
-
 function sendPublisher(args, callback) {
 
-    var url = `${apiSource}sources?`;
-
-    //This function processes the api call
-    var searchPublisher = function(args) {
+    //Default url
+    var url = `${apiSource}sources?&apiKey=${apiKey}`;
+    
         var xhr = new XMLHttpRequest();
 
         xhr.open("GET", url);
@@ -150,50 +132,15 @@ function sendPublisher(args, callback) {
                 callback(JSON.parse(this.responseText));
             }
         };
-    }
-
-
-    //This to check if no check have been selected
-    if (!args.country && !args.language && !args.category) {
-
-        url += `&apiKey=${apiKey}`;
-        searchPublisher(url);
-    }
-
-    else {
-
-        if (args.country) {
-            url += `country=${args.country}&`;
-        }
-
-        if (args.category) {
-            url += `category=${args.category}&`;
-        }
-
-        if (args.language) {
-            url += `language=${args.language}&`;
-        }
-
-        url += `apiKey=${apiKey}`;
-        searchPublisher(url);
-
-    }
 }
 
+//This is called from the script.js file and is used to populate select field
 function addPublisher(args, callback) {
-
     sendPublisher(args, function(data) {
         var publishers = data.sources;
         callback(publishers);
-        publisher.setPublisherInfo(publishers);
     });
 };
-
-
-function getPublisher() {
-    return publisherInfo;
-}
-
 
 /*global $, addHeadline, addPublisher, moment*/
 var country;
@@ -349,7 +296,7 @@ function getHeadlineInfo(args) {
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="picture">
-                                    <img src="${articleInfo.urlToImage}"></img>
+                                    <img alt="${articleInfo.title}" src="${articleInfo.urlToImage}"></img>
                                 </div>
                             </div>
                             <div class="col-md-9">
@@ -518,13 +465,12 @@ $(document).ready(function() {
 /*global apiSource,apiKey,$, getHeadlineInfo*/
 function sendHeadlines(args, callback) {
 
+    //Default url with page size of 100
     var url = `${apiSource}top-headlines?pageSize=100&`;
-  
+
     //This function processes the api call
     var searchHeadline = function(args) {
         var xhr = new XMLHttpRequest();
-
-        console.log("url: " + url);
 
         xhr.open("GET", url);
         xhr.send();
@@ -545,21 +491,27 @@ function sendHeadlines(args, callback) {
 
     else {
 
+        //To check if a country has been selected
         if (args.country != "all" && args.country) {
             url += `country=${args.country}&`;
         }
 
+        //To check if a category has been selected
         if (args.category != "all" && args.category) {
             url += `category=${args.category}&`;
         }
 
+        //To check if a source has been selected
         if (args.sources != "all" && args.sources) {
             url += `sources=${args.sources}&`;
         }
 
+        //To check if there is a search parameter 
         if (args.q) {
             url += `q=${args.q}&`;
         }
+        
+        //This is for pagination
         if (args.page > 1) {
             url += `page=${args.page}&`;
         }
@@ -568,9 +520,9 @@ function sendHeadlines(args, callback) {
         searchHeadline(url);
 
     }
-
 }
 
+//This function is called from the getHeadline.js file to send data to the api
 function addHeadline(args, callback) {
     sendHeadlines(args, function(data) {
         var headline = data;
@@ -579,15 +531,19 @@ function addHeadline(args, callback) {
 
 };
 
-$(document).ready(function(){
-    getHeadlineInfo("start"); 
+$(document).ready(function() {
+    //Populate the homepage with initial default data
+    getHeadlineInfo("start");
 });
-/*global $, addPublisher, getHeadlineInfo*/
 
+/*global $, addPublisher, getHeadlineInfo, populateSources*/
+
+//Navigates to homepage
 function searchHeadline() {
     window.location.href = 'index.html';
 }
 
+//Navigates to advanced search page
 function advancedSearch() {
     window.location.href = 'advanced.html';
 }
@@ -607,19 +563,22 @@ $(document).ready(function() {
             var sources = document.getElementById("menuSourcesAdvanced");
         }
 
-
         var source = [];
-        source.push("<option id='menuSourceItem' selected value='all'>All Sources</option>");
-        source.push("<option id='menuSourceItem' value='many'>Multiple Sources</option>");
-
         var args = [];
+
+        //Setting up some default select options for sources select field
+        source.push("<option selected value='all'>All Sources</option>");
+        source.push("<option value='many'>Multiple Sources</option>");
+
+        //Populates the sources select field
         addPublisher(args, function(response) {
             response.forEach(function(entry) {
-                source.push(`<option id="menuSourceItem" value="${entry.id}">${entry.name}</option>`);
-                sources.innerHTML = `${source}`;
+                source.push(`<option value="${entry.id}">${entry.name}</option>`);
+                sources.innerHTML = source.join('');
             });
         });
     }
+    
+    //Populates the sources select field upon start up
     populateSources();
-
 });
