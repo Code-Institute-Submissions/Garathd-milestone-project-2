@@ -1,13 +1,7 @@
 /*global $, addPublisher, getHeadlineInfo, populateSources*/
 
-//Sets default location
-var website = window.location.href;
-var path = window.location.pathname;
-
-console.log("http address: " + website);
-console.log("pathname: " + path);
-console.log("combined: "+ website+path);
-
+//Variable for Git Pages
+var gitPath = "/milestone-project-2";
 
 //Navigates to homepage
 function searchHeadline() {
@@ -26,11 +20,22 @@ $(document).ready(function() {
 
 
         //Checks which page has been selected
-        if (window.location.pathname == website || window.location.pathname == website + '/index.html') {
+
+        //For Github Pages Only
+        if (window.location.pathname == gitPath + '/' || window.location.pathname == gitPath + '/index.html') {
             var sources = document.getElementById("menuSources");
         }
 
-        else if (window.location.pathname == website + '/advanced.html') {
+        else if (window.location.pathname == gitPath + '/advanced.html') {
+            var sources = document.getElementById("menuSourcesAdvanced");
+        }
+
+        //For Local Server (Cloud 9)
+        else if (window.location.pathname == '/' || window.location.pathname == '/index.html') {
+            var sources = document.getElementById("menuSources");
+        }
+
+        else if (window.location.pathname == '/advanced.html') {
             var sources = document.getElementById("menuSourcesAdvanced");
         }
 
