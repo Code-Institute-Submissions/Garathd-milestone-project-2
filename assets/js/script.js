@@ -1,5 +1,8 @@
 /*global $, addPublisher, getHeadlineInfo, populateSources*/
 
+
+console.log("Debugging current page: " + window.location.pathname);
+
 //Navigates to homepage
 function searchHeadline() {
     window.location.href = 'index.html';
@@ -40,7 +43,7 @@ $(document).ready(function() {
             });
         });
     }
-    
+
     //Populates the sources select field upon start up
     populateSources();
 });
