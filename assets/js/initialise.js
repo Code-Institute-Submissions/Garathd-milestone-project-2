@@ -10,7 +10,7 @@ var host;
 
 //For Github Pages Only
 if (window.location.pathname == gitPage || window.location.pathname == gitPage + 'index.html') {
-     host = "server";
+    host = "server";
     console.log("Home Page Server");
 }
 
@@ -41,26 +41,12 @@ function getMenuItems(callback) {
 
     console.log("Running...");
 
-    if (host == "local") {
-        console.log("IS Local");
-        $.getJSON("assets/data/menu.json", function(data) {
-            $.each(data, function(index, value) {
-                array.push(value);
-            });
-            callback(array);
+    $.getJSON("assets/data/menu.json", function(data) {
+        $.each(data, function(index, value) {
+            array.push(value);
         });
-    }
-
-    else if (check == "server") {
-        console.log("IS Server");
-        $.getJSON(`${gitPage}assets/data/menu.json`, function(data) {
-            $.each(data, function(index, value) {
-                array.push(value);
-            });
-            callback(array);
-        });
-    }
-
+        callback(array);
+    });
 };
 
 //Regex for alphanumeric data only used on search fields
