@@ -7,6 +7,8 @@ const apiSource = "https://newsapi.org/v2/";
 var gitPath = "/milestone-project-2";
 var check;
 
+console.log("Initiales");
+
 //For Github Pages Only
 if (window.location.pathname == gitPath + '/' || window.location.pathname == gitPath + '/index.html') {
     check = "server";
@@ -35,7 +37,7 @@ function getMenuItems(callback) {
     console.log("Running...");
 
     if (check == "local") {
-        console.log("IS Local")
+        console.log("IS Local");
         $.getJSON("assets/data/menu.json", function(data) {
             $.each(data, function(index, value) {
                 array.push(value);

@@ -3,16 +3,57 @@ const apiKey = "32ad11f7baf84533819d0089abe5c95c";
 const apiSource = "https://newsapi.org/v2/";
 /*-----------------------------------------------*/
 
+//Variable for Git Pages
+var gitPath = "/milestone-project-2";
+var check;
+
+//For Github Pages Only
+if (window.location.pathname == gitPath + '/' || window.location.pathname == gitPath + '/index.html') {
+    check = "server";
+}
+
+else if (window.location.pathname == gitPath + '/advanced.html') {
+    check = "server";
+
+}
+
+//For Local Server (Cloud 9)
+else if (window.location.pathname == '/' || window.location.pathname == '/index.html') {
+    check = "local";
+}
+
+else if (window.location.pathname == '/advanced.html') {
+    check = "local";
+}
+
+
 //Getting JSON Data for the Select Fields
 function getMenuItems(callback) {
 
     var array = new Array();
-    $.getJSON("assets/data/menu.json", function(data) {
-        $.each(data, function(index, value) {
-            array.push(value);
+    
+    console.log("Running...");
+
+    if (check == "local") {
+        console.log("IS Local");
+        $.getJSON("assets/data/menu.json", function(data) {
+            $.each(data, function(index, value) {
+                array.push(value);
+            });
+            callback(array);
         });
-        callback(array);
-    });
+    }
+
+    else if (check == "server") {
+        console.log("IS Server");
+        $.getJSON(`${gitPath}/assets/data/menu.json`, function(data) {
+            $.each(data, function(index, value) {
+                array.push(value);
+            });
+            callback(array);
+        });
+    }
+
 };
 
 //Regex for alphanumeric data only used on search fields
@@ -39,7 +80,7 @@ $(document).ready(function() {
     //Initially hide the loading screen and the scroll to top button
     $("#loading").hide();
     $('.scrollTop').hide();
-    
+
     //Scroll to top button
     var scrollTop = $(".scrollTop");
 
@@ -538,6 +579,9 @@ $(document).ready(function() {
 
 /*global $, addPublisher, getHeadlineInfo, populateSources*/
 
+//Variable for Git Pages
+var gitPath = "/milestone-project-2";
+
 //Navigates to homepage
 function searchHeadline() {
     window.location.href = 'index.html';
@@ -555,11 +599,22 @@ $(document).ready(function() {
 
 
         //Checks which page has been selected
-        if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+
+        //For Github Pages Only
+        if (window.location.pathname == gitPath + '/' || window.location.pathname == gitPath + '/index.html') {
             var sources = document.getElementById("menuSources");
         }
 
-        else if (window.location.pathname === '/advanced.html') {
+        else if (window.location.pathname == gitPath + '/advanced.html') {
+            var sources = document.getElementById("menuSourcesAdvanced");
+        }
+
+        //For Local Server (Cloud 9)
+        else if (window.location.pathname == '/' || window.location.pathname == '/index.html') {
+            var sources = document.getElementById("menuSources");
+        }
+
+        else if (window.location.pathname == '/advanced.html') {
             var sources = document.getElementById("menuSourcesAdvanced");
         }
 
@@ -578,7 +633,7 @@ $(document).ready(function() {
             });
         });
     }
-    
+
     //Populates the sources select field upon start up
     populateSources();
 });
