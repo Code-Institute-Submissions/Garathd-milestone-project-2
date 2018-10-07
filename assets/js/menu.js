@@ -1,9 +1,5 @@
 /* global $, getMenuItems, project*/
 $(document).ready(function() {
-    const host = window.location.host;
-
-    console.log("window.location.host: " + host);
-     console.log("window.location.pathname: " + window.location.pathname);
     
     //Setting up the select fields for the homepage
     if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {

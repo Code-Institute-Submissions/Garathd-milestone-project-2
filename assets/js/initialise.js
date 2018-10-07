@@ -9,8 +9,6 @@ function getMenuItems(callback) {
 
     var array = new Array();
 
-    console.log("Running...");
-
     $.getJSON(`${project}assets/data/menu.json`, function(data) {
         $.each(data, function(index, value) {
             array.push(value);
