@@ -4,9 +4,6 @@ const apiSource = "https://newsapi.org/v2/";
 const gitPage = "https://garathd.github.io/milestone-project-2/";
 /*-----------------------------------------------*/
 
-//Variable for Git Pages
-const gitPath = "/milestone-project-2";
-
 var homepage;
 var host;
 
@@ -56,7 +53,7 @@ function getMenuItems(callback) {
 
     else if (check == "server") {
         console.log("IS Server");
-        $.getJSON(`${gitPath}assets/data/menu.json`, function(data) {
+        $.getJSON(`${gitPage}assets/data/menu.json`, function(data) {
             $.each(data, function(index, value) {
                 array.push(value);
             });
