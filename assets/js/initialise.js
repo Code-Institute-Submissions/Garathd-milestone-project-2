@@ -33,6 +33,7 @@ function getMenuItems(callback) {
     var array = new Array();
 
     if (check == "local") {
+        console.log("IS Local")
         $.getJSON("assets/data/menu.json", function(data) {
             $.each(data, function(index, value) {
                 array.push(value);
@@ -42,6 +43,7 @@ function getMenuItems(callback) {
     }
 
     else if (check == "server") {
+        console.log("IS Server");
         $.getJSON(`${gitPath}/assets/data/menu.json`, function(data) {
             $.each(data, function(index, value) {
                 array.push(value);
