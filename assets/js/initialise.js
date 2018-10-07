@@ -31,6 +31,8 @@ else if (window.location.pathname == '/advanced.html') {
 function getMenuItems(callback) {
 
     var array = new Array();
+    
+    console.log("Running...");
 
     if (check == "local") {
         console.log("IS Local")
