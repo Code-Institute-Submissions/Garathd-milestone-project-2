@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 /* global $, getMenuItems, project*/
 $(document).ready(function() {
-    
+
     //Setting up the select fields for the homepage
     if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
         var countries = [];
@@ -77,8 +77,15 @@ $(document).ready(function() {
 
             //Populating the Country Select Field
             countryArray.forEach(function(entry) {
-                countries.push(`<option selected value="${entry.id}">${entry.name}</option>`);
+                if (entry.id == "gb") {
+                    countries.push(`<option selected value="${entry.id}">${entry.name}</option>`);
+                }
+                else {
+                    countries.push(`<option value="${entry.id}">${entry.name}</option>`);
+                }
                 country.innerHTML = countries.join('');
+
+
             });
 
             //Populating the Category Select Field
@@ -452,7 +459,7 @@ function nextHeadline() {
         if (pageResultHeadline - currentPageSizeHeadline < 0) {
 
             currentPageSizeHeadline = pageResultHeadline;
-            pageResults.innerHTML = "Results: " + currentPageSizeHeadline + " / " + pageResultHeadline;
+            pageResults.innerHTML = "<strong>Results: </strong> " + currentPageSizeHeadline + " / " + pageResultHeadline;
 
         }
     }
