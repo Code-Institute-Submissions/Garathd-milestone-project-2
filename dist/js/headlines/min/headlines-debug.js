@@ -123,6 +123,10 @@ $(document).ready(function() {
             });
         });
     }
+    //This is a redirect to the homepage instead of a 404 page
+    else {
+        window.location.href = 'index.html';
+    }
 });
 
 /*global apiSource,apiKey,$*/
@@ -394,8 +398,6 @@ function sourceChange(sel) {
 //Adds a value to an array to see what checkboxes have been checked
 function checkBox(args) {
 
-
-
     //To get the value of the checked box
     var result = args.value;
 
@@ -545,7 +547,7 @@ $(document).ready(function() {
     getHeadlineInfo("start");
 });
 
-/*global $, addPublisher, getHeadlineInfo, populateSources, project*/
+/*global $, addPublisher, project*/
 
 //Navigates to homepage
 function searchHeadline() {

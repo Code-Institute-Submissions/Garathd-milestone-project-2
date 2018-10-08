@@ -123,6 +123,10 @@ $(document).ready(function() {
             });
         });
     }
+    //This is a redirect to the homepage instead of a 404 page
+    else {
+        window.location.href = 'index.html';
+    }
 });
 
 /*global apiSource,apiKey,$*/
@@ -521,7 +525,7 @@ function addThings(args, callback) {
 
 };
 
-/*global $, addPublisher, getHeadlineInfo, populateSources, project*/
+/*global $, addPublisher, project*/
 
 //Navigates to homepage
 function searchHeadline() {

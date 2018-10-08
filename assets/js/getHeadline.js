@@ -241,8 +241,6 @@ function sourceChange(sel) {
 //Adds a value to an array to see what checkboxes have been checked
 function checkBox(args) {
 
-
-
     //To get the value of the checked box
     var result = args.value;
 

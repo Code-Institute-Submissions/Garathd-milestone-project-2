@@ -1,4 +1,4 @@
-/*global $, addPublisher, getHeadlineInfo, populateSources, project*/
+/*global $, addPublisher, project*/
 
 //Navigates to homepage
 function searchHeadline() {
@@ -12,14 +12,12 @@ function advancedSearch() {
 
 $(document).ready(function() {
 
-
     /*Populate Sources Dropdown*/
     function populateSources() {
 
         var sources;
 
         //Checks which page has been selected
-
 
         //For Local Server (Cloud 9)
          if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
@@ -28,7 +26,7 @@ $(document).ready(function() {
 
         else if (window.location.pathname == `${project}advanced.html`) {
              sources = document.getElementById("menuSourcesAdvanced");
-        }
+        } 
 
         var source = [];
         var args = [];

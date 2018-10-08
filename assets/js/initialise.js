@@ -38,6 +38,9 @@ $(window).scroll(function() {
 
 $(document).ready(function() {
 
+    var fourofour = document.getElementsByTagName('h1').value;
+    console.log("fourofour: " + fourofour);
+
     //Initially hide the loading screen and the scroll to top button
     $("#loading").hide();
     $('.scrollTop').hide();

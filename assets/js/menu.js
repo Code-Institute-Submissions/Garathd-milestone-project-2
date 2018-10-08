@@ -2,6 +2,8 @@
 $(document).ready(function() {
 
     //Setting up the select fields for the homepage
+
+
     if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
         var countries = [];
         var categories = [];
