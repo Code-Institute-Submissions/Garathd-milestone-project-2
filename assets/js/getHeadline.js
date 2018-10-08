@@ -306,7 +306,7 @@ function nextHeadline() {
         if (pageResultHeadline - currentPageSizeHeadline < 0) {
 
             currentPageSizeHeadline = pageResultHeadline;
-            pageResults.innerHTML = "Results: " + currentPageSizeHeadline + " / " + pageResultHeadline;
+            pageResults.innerHTML = "<strong>Results: </strong> " + currentPageSizeHeadline + " / " + pageResultHeadline;
 
         }
     }
