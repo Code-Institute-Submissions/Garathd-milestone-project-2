@@ -38,6 +38,14 @@ $(window).scroll(function() {
 
 $(document).ready(function() {
 
+    $.ajax({
+        statusCode: {
+            404: function() {
+                alert("page not found");
+            }
+        }
+    });
+
     //Initially hide the loading screen and the scroll to top button
     $("#loading").hide();
     $('.scrollTop').hide();
@@ -62,6 +70,8 @@ $(document).ready(function() {
 $(document).ready(function() {
 
     //Setting up the select fields for the homepage
+
+
     if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
         var countries = [];
         var categories = [];
@@ -122,10 +132,6 @@ $(document).ready(function() {
                 sort.innerHTML = `${sortBy}`;
             });
         });
-    }
-    //This is a redirect to the homepage instead of a 404 page
-    else {
-        window.location.href = 'index.html';
     }
 });
 
@@ -539,14 +545,12 @@ function advancedSearch() {
 
 $(document).ready(function() {
 
-
     /*Populate Sources Dropdown*/
     function populateSources() {
 
         var sources;
 
         //Checks which page has been selected
-
 
         //For Local Server (Cloud 9)
          if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
