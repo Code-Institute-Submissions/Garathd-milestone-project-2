@@ -2,6 +2,8 @@
 
 //Default Test Parameters       
 var params = [];
+
+//Default search term
 params.q = "News";
 
 describe("Testing Advanced Search", () => {
