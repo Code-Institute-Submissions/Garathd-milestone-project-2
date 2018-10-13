@@ -33,9 +33,11 @@ I’m using moment js to convert the article date formats. I’m using font awes
 ## Testing
 
 This web app was tested using firefox and Galaxy S5. 
-I needed to include validation on the search fields to only allow alphanumeric entry as I noticed when I typed &&& it changed the api url. 
+I needed to include validation on the search fields to only allow alphanumeric entry as I noticed when I typed &&& it changed the api url. The Unit tests can be run by uncommenting the testing code in the index.html and advanced.html pages header section.
 
 ### Homepage Tests
+
+#### Manual Tests
 - ***Test case 1:*** Search by just countries 
 - ***Test case 2:*** Search by countries and category
 - ***Test case 3:*** Search by countries and category with a search parameter
@@ -43,13 +45,23 @@ I needed to include validation on the search fields to only allow alphanumeric e
 - ***Test case 5:*** Modal message if you try and search for Sources with either countries and categories or both. 
 - ***Test case 6:*** In the event of a multiple sources being selected with no sources checked the page reloads.  
 
-
+#### Unit Test with Jasmine
+- ***Test case 1:*** Check if the repsonse is ok
+- ***Test case 2:*** Check if any articles are found
+- ***Test case 3:*** Check if the countries, categories and languages and sort by menu options are working
+- ***Test case 4:*** Check if the sources menu option is found (publishers)
 
 ### Advanced Tests
 - ***Test Case One:*** Just search by language gives modal message to for the user to “Choose at least a Source or use the Search”. 
 - ***Test Case Two:*** Just using the sort by select box gives modal message to for the user to “Choose at least a Source or use the Search”. 
 - ***Test Case Three:*** Search with all of the following - with source, with search by language with sort by and with a search term.
 - ***Test Case Four:***  Search with all sources, all languages, most popular and with a search parameter
+
+#### Unit Test with Jasmine
+- ***Test case 1:*** Check if the repsonse is ok
+- ***Test case 2:*** Check if any articles are found
+- ***Test case 3:*** Check if the countries, categories and languages and sort by menu options are working
+- ***Test case 4:*** Check if the sources menu option is found (publishers)
 
 ## Deployment
 During development, all code was written in Cloud 9 and updates were saved and tested locally. Throughout the process I used Github to keep track of changes and to maintain version control in my codebase. The development version of my website is a separate branch than my live version. Once development was completed I deployed the project to GitHub pages by taking the following steps:
