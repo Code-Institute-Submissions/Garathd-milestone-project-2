@@ -66,10 +66,10 @@ All my content is sourced from the various media publishers that are available v
 
 ## Acknowledgements
 I received inspiration for this website from:
-***RTE.ie***  - Black Navigation bar
-***RT.com*** – I liked the green on black mix. My search button is green
-***Aerlingus.com*** – For select fields and search styles
-***Cloud 9*** – Black navigation bar with grey header and also navigation button styles
-***Code Institute*** – The pagination buttons
+- ***RTE.ie***  - Black Navigation bar
+- ***RT.com*** – I liked the green on black mix. My search button is green
+- ***Aerlingus.com*** – For select fields and search styles
+- ***Cloud 9*** – Black navigation bar with grey header and also navigation button styles
+- ***Code Institute*** – The pagination buttons
 
 
