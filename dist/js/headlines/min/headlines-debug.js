@@ -38,14 +38,6 @@ $(window).scroll(function() {
 
 $(document).ready(function() {
 
-    $.ajax({
-        statusCode: {
-            404: function() {
-                alert("page not found");
-            }
-        }
-    });
-
     //Initially hide the loading screen and the scroll to top button
     $("#loading").hide();
     $('.scrollTop').hide();
@@ -581,7 +573,7 @@ $(document).ready(function() {
 
         else if (window.location.pathname == `${project}advanced.html`) {
              sources = document.getElementById("menuSourcesAdvanced");
-        }
+        } 
 
         var source = [];
         var args = [];
