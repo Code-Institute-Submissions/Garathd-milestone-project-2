@@ -51,7 +51,9 @@ I needed to include validation on the search fields to only allow alphanumeric e
 - ***Test case 3:*** Check if the countries, categories and languages and sort by menu options are working
 - ***Test case 4:*** Check if the sources menu option is found (publishers)
 
-### Advanced Tests
+### Advanced Page Tests
+
+#### Manual Tests
 - ***Test Case One:*** Just search by language gives modal message to for the user to “Choose at least a Source or use the Search”. 
 - ***Test Case Two:*** Just using the sort by select box gives modal message to for the user to “Choose at least a Source or use the Search”. 
 - ***Test Case Three:*** Search with all of the following - with source, with search by language with sort by and with a search term.
