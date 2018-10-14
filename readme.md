@@ -38,7 +38,8 @@ I’m using moment JS to convert the article date formats. I’m using font awes
  
 ## Testing
 This web app was tested using Firefox and a Galaxy S5 and was tested both manually and using Jasmine Unit Testing
-The Unit tests can be run by uncommenting the testing code in the index.html and advanced.html pages header section.
+The Unit tests can be run by uncommenting the testing code in the index.html and advanced.html pages header section in the devlop branch of thiw web app.
+
 I needed to include validation on the search fields to only allow alphanumeric entry as I noticed when I typed and searched &&& it changed the API url. 
 
 ### Homepage Tests
@@ -74,11 +75,11 @@ I needed to include validation on the search fields to only allow alphanumeric e
 ## Deployment
 During development, all code was written in Cloud 9 and updates were saved and tested locally. Throughout the process I used GitHub to keep track of changes and to maintain version control in my code base. 
 
-The Development version of my website is a separate branch than my live version it is called develop. The main difference between these branches is that the code for unit testing is uncommented along with the un-concatenated and un-minified JavaScript files while to production code is uncommented. This branch is used for testing and development and satisfactory changes are then merged into the live master branch.
+The Development version of my website is a separate branch than my live version it is called develop. The main difference between these branches is that the code for unit testing is uncommented along with the un-concatenated and un-minified JavaScript files while the production code is uncommented. This branch is used for testing and development and satisfactory changes are then merged into the live master branch.
 
 The Master branch of this website is the production branch for my live GitHub pages version of my website with only essential code available.
 
-Once development was completed I deployed the project to GitHub pages by taking the following steps:
+Once project development was completed I deployed the project to GitHub pages by taking the following steps:
 - Make the final commit to the repo
 - Click settings
 - Scroll to GitHub Pages section
