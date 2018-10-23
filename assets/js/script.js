@@ -20,13 +20,13 @@ $(document).ready(function() {
         //Checks which page has been selected
 
         //For Local Server (Cloud 9)
-         if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
-             sources = document.getElementById("menuSources");
+        if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
+            sources = document.getElementById("menuSources");
         }
 
         else if (window.location.pathname == `${project}advanced.html`) {
-             sources = document.getElementById("menuSourcesAdvanced");
-        } 
+            sources = document.getElementById("menuSourcesAdvanced");
+        }
 
         var source = [];
         var args = [];

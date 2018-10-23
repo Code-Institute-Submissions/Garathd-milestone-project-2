@@ -18,12 +18,14 @@
     float:left;
     padding: 1%;
     margin-bottom: 1%;
+    margin-right: 2%;
     list-style-type: none !important;
 }
 
 .multiple-item label{
     float:left;
     font-size: 10px;
+    width: 140px;
 }
 
 .multiple-item > input{
@@ -32,5 +34,5 @@
 
 
 input[type="checkbox"]{
-    margin: 0px 4px 0 !important;
+    margin: 0px !important;
 }

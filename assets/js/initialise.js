@@ -19,7 +19,7 @@ function getMenuItems(callback) {
 
 //Regex for alphanumeric data only used on search fields
 function alphanumericsonly(ob) {
-    var invalidChars = /([^A-Za-z0-9])/
+    var invalidChars = /([^A-Za-z0-9\s])/
     if (invalidChars.test(ob.value)) {
         ob.value = ob.value.replace(invalidChars, "");
     }

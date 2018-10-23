@@ -310,6 +310,18 @@ function nextHeadline() {
     }
 }
 
+//Navigates to the about modal
+function about() {
+    $('#myModal').modal('show');
+    $("#myModal .modal-title").html("About this Web App");
+    $("#myModal .modal-message").html(`
+    <p>This Web App is a news resource that combines the articles of various news sources from around the world</p>
+    <br />
+    <p>This application was created by Garath Davis</p>
+    `);
+}
+
+
 $(document).ready(function() {
 
     //Starts the page with default information

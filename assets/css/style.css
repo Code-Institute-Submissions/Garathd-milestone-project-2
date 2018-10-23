@@ -14,17 +14,19 @@
   float: left;
   padding: 1%;
   margin-bottom: 1%;
+  margin-right: 2%;
   list-style-type: none !important; }
 
 .multiple-item label {
   float: left;
-  font-size: 10px; }
+  font-size: 10px;
+  width: 140px; }
 
 .multiple-item > input {
   float: left; }
 
 input[type="checkbox"] {
-  margin: 0px 4px 0 !important; }
+  margin: 0px !important; }
 
 #sourceList {
   margin: 2%; }
@@ -255,7 +257,8 @@ img {
 .btn-primary {
   background-color: #4CAF50 !important;
   color: #fff !important;
-  margin-top: 0px !important; }
+  margin-top: 0px !important;
+  width: 100% !important; }
 
 .footer-bar {
   height: 50px;
