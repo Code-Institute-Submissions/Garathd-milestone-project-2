@@ -19,7 +19,7 @@ function getMenuItems(callback) {
 
 //Regex for alphanumeric data only used on search fields
 function alphanumericsonly(ob) {
-    var invalidChars = /([^A-Za-z0-9])/
+    var invalidChars = /([^A-Za-z0-9\s])/
     if (invalidChars.test(ob.value)) {
         ob.value = ob.value.replace(invalidChars, "");
     }
@@ -465,6 +465,18 @@ function nextHeadline() {
     }
 }
 
+//Navigates to the about modal
+function about() {
+    $('#myModal').modal('show');
+    $("#myModal .modal-title").html("About this Web App");
+    $("#myModal .modal-message").html(`
+    <p>This Web App is a news resource that combines the articles of various news sources from around the world</p>
+    <br />
+    <p>This application was created by Garath Davis</p>
+    `);
+}
+
+
 $(document).ready(function() {
 
     //Starts the page with default information
@@ -567,13 +579,13 @@ $(document).ready(function() {
         //Checks which page has been selected
 
         //For Local Server (Cloud 9)
-         if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
-             sources = document.getElementById("menuSources");
+        if (window.location.pathname == `${project}` || window.location.pathname == `${project}index.html`) {
+            sources = document.getElementById("menuSources");
         }
 
         else if (window.location.pathname == `${project}advanced.html`) {
-             sources = document.getElementById("menuSourcesAdvanced");
-        } 
+            sources = document.getElementById("menuSourcesAdvanced");
+        }
 
         var source = [];
         var args = [];

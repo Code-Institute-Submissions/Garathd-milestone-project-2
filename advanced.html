@@ -57,6 +57,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li><a href="#" onclick="searchHeadline()">Search Top Headlines</a></li>
+                    <li><a href="#" onclick="about()">About this App</a></li>
                 </ul>
             </div>
         </div>
@@ -64,22 +65,26 @@
 
     <div class="container-fluid menu-header">
         <div class="searchMenu">
-            <div id="advancedSearch">
-                <div class="row">
-                    <div class="col-md-3">
-                        <select onchange="sourceChange(this)" class="form-control" id="menuSourcesAdvanced"></select>
-                    </div>
-                    <div class="col-md-3">
-                        <select class="form-control" id="menuLanguages"></select>
-                    </div>
-                    <div class="col-md-2">
-                        <select class="form-control" id="menuSortBy"></select>
-                    </div>
-                    <div class="col-md-2">
-                        <input class="form-control" onkeyup="alphanumericsonly(this)" id="adSearch" type="text" placeholder="Advanced Search" />
-                    </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-primary" id="searchButtonAdvanced" onclick="getEverythingInfo()">Search</button>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="advancedSearch">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <select onchange="sourceChange(this)" class="form-control" id="menuSourcesAdvanced"></select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" id="menuLanguages"></select>
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-control" id="menuSortBy"></select>
+                            </div>
+                            <div class="col-md-2">
+                                <input class="form-control" onkeyup="alphanumericsonly(this)" id="adSearch" type="text" placeholder="Advanced Search" />
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-primary" id="searchButtonAdvanced" onclick="getEverythingInfo()">Search</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
