@@ -7,7 +7,7 @@ const project = "/milestone-project-2/";
 //Getting JSON Data for the Select Fields
 function getMenuItems(callback) {
 
-    var array = new Array();
+    var array = [];
 
     $.getJSON(`${project}assets/data/menu.json`, function(data) {
         $.each(data, function(index, value) {
@@ -15,15 +15,15 @@ function getMenuItems(callback) {
         });
         callback(array);
     });
-};
+}
 
 //Regex for alphanumeric data only used on search fields
 function alphanumericsonly(ob) {
-    var invalidChars = /([^A-Za-z0-9\s])/
+    var invalidChars = /([^A-Za-z0-9\s])/;
     if (invalidChars.test(ob.value)) {
         ob.value = ob.value.replace(invalidChars, "");
     }
-};
+}
 
 //Shows and Hides the scroll to top button
 $(window).scroll(function() {

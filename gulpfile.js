@@ -2,7 +2,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var minify = require('gulp-minify');
 var sass = require('gulp-sass');
-var gulpSequence = require('gulp-sequence')
+var gulpSequence = require('gulp-sequence');
 
 //Concat The Advanced Search Stuff
 gulp.task('concat-advanced', function() {
@@ -61,4 +61,6 @@ gulp.task('compress', ['compress-headline', 'compress-advanced']);
 
 gulp.task('scripts', function(cb) {
     gulpSequence(['concat'], 'compress', cb)
-})
+});
+
+

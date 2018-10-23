@@ -16,7 +16,7 @@ function sendHeadlines(args, callback) {
                 callback(JSON.parse(this.responseText));
             }
         };
-    }
+    };
 
     //This to check if no check have been selected
     if (!args.country && !args.category && !args.source && !args.q) {
@@ -63,9 +63,9 @@ function addHeadline(args, callback) {
     sendHeadlines(args, function(data) {
         var headline = data;
         callback(headline);
-    })
+    });
 
-};
+}
 
 $(document).ready(function() {
     //Populate the homepage with initial default data

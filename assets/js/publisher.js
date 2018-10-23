@@ -22,4 +22,4 @@ function addPublisher(args, callback) {
         var publishers = data.sources;
         callback(publishers);
     });
-};
+}

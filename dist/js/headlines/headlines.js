@@ -7,7 +7,7 @@ const project = "/milestone-project-2/";
 //Getting JSON Data for the Select Fields
 function getMenuItems(callback) {
 
-    var array = new Array();
+    var array = [];
 
     $.getJSON(`${project}assets/data/menu.json`, function(data) {
         $.each(data, function(index, value) {
@@ -15,15 +15,15 @@ function getMenuItems(callback) {
         });
         callback(array);
     });
-};
+}
 
 //Regex for alphanumeric data only used on search fields
 function alphanumericsonly(ob) {
-    var invalidChars = /([^A-Za-z0-9\s])/
+    var invalidChars = /([^A-Za-z0-9\s])/;
     if (invalidChars.test(ob.value)) {
         ob.value = ob.value.replace(invalidChars, "");
     }
-};
+}
 
 //Shows and Hides the scroll to top button
 $(window).scroll(function() {
@@ -151,7 +151,7 @@ function addPublisher(args, callback) {
         var publishers = data.sources;
         callback(publishers);
     });
-};
+}
 
 /*global $, addHeadline, addPublisher, moment*/
 var country;
@@ -238,14 +238,14 @@ function getHeadlineInfo(args) {
         $(".menu-header").css("background-color", "#ffffff");
 
         var releases = [];
-        var params = new Array();
+        var params = [];
 
         //Setting search parameters from user input
-        params['country'] = country;
-        params['category'] = category;
-        params['sources'] = sources;
-        params['q'] = search;
-        params['page'] = currentPageHeadline;
+        params.country = country;
+        params.category = category;
+        params.sources = sources;
+        params.q = search;
+        params.page = currentPageHeadline;
 
         //Sending up search parameters to the api
         addHeadline(params, function(response) {
@@ -363,7 +363,7 @@ function getHeadlineInfo(args) {
 
         });
     }
-};
+}
 
 //Function for when source information changes
 function sourceChange(sel) {
@@ -501,7 +501,7 @@ function sendHeadlines(args, callback) {
                 callback(JSON.parse(this.responseText));
             }
         };
-    }
+    };
 
     //This to check if no check have been selected
     if (!args.country && !args.category && !args.source && !args.q) {
@@ -548,9 +548,9 @@ function addHeadline(args, callback) {
     sendHeadlines(args, function(data) {
         var headline = data;
         callback(headline);
-    })
+    });
 
-};
+}
 
 $(document).ready(function() {
     //Populate the homepage with initial default data

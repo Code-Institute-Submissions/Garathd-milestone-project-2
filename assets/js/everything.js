@@ -1,4 +1,4 @@
-/*global apiSource,apiKey,$*/
+/*global apiSource,apiKey*/
 function sendThings(args, callback) {
 
     //Default url with page size of 100
@@ -16,7 +16,7 @@ function sendThings(args, callback) {
                 callback(JSON.parse(this.responseText));
             }
         };
-    }
+    };
     
     //To check if a source has been selected
     if (args.sources != "all" && args.sources) {
@@ -49,10 +49,9 @@ function sendThings(args, callback) {
 
 //This function is called from the getEverything.js file to send data to the api
 function addThings(args, callback) {
-
     sendThings(args, function(data) {
         var everything = data;
         callback(everything);
-    })
+    });
 
-};
+}

@@ -20,13 +20,13 @@ function getEverythingInfo(args) {
 
     //Check if not using pagination
     if (args != "navigation") {
-        
+
         currentPageSearch = 1;
         sort = $("#menuSortBy option:selected").attr("value");
         language = $("#menuLanguages option:selected").attr("value");
         sources = $("#menuSourcesAdvanced option:selected").attr("value");
         search = document.getElementById("adSearch").value;
-        
+
         //This is to check if the Multiple Sources field is being used for searching
         if ($("#menuSourcesAdvanced option:selected").attr("value") == "many") {
             if (sources == multiple) {
@@ -72,25 +72,25 @@ function getEverythingInfo(args) {
         $(".searchMenu").hide();
         $("#loading").show();
         $(".menu-header").css("background-color", "#ffffff");
-        
+
         var releases = [];
-        var params = new Array();
-        
+        var params = [];
+
         //Setting search parameters from user input
-        params['sortBy'] = sort;
-        params['sources'] = sources;
-        params['language'] = language;
-        params['q'] = search;
-        params['page'] = currentPageSearch;
-        
+        params.sortBy = sort;
+        params.sources = sources;
+        params.language = language;
+        params.q = search;
+        params.page = currentPageSearch;
+
         //Sending up search parameters to the api
         addThings(params, function(response) {
-            
+
             var searchParameters = response.articles;
-            
+
             //Total Articles Found
             pageResultSearch = response.totalResults;
-            
+
             //Code for Page Results
             if (!args) {
                 if (currentPageSizeSearch > pageResultSearch || pageResultSearch <= 100) {
@@ -119,14 +119,14 @@ function getEverythingInfo(args) {
             else {
                 pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
             }
-            
+
             //Iterating through the search results array
             searchParameters.forEach(function(entry) {
-                
+
                 var formatDate = entry.publishedAt;
                 var responseDate = moment(formatDate).format('DD/MM/YYYY');
                 var articleInfo = entry;
-                
+
                 //If no article image then use placeholder image
                 if (articleInfo.urlToImage == null) {
                     articleInfo.urlToImage = "assets/images/empty.png";
@@ -167,27 +167,27 @@ function getEverythingInfo(args) {
                         </div>
                     </div>`);
             });
-            
+
             //No articles found
             if (searchParameters.length == 0) {
                 writeInfo.innerHTML = `<h1 class="no-articles" align="center">No Articles Found</h1>`;
             }
             else {
-                
+
                 //Outputs the Search Results to the Page and gets rid of any commas from between each article
                 writeInfo.innerHTML = releases.join('');
             }
-            
+
             /*Ensures the Results are displayed*/
             pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
-          
+
             //Show Navigation and Hide the Loading Screen
             $(".searchMenu").show();
             $("#loading").hide();
             $(".menu-header").css("background-color", "#f7f7f7");
 
             $("#totalResultsInfoSearch").show();
-            
+
             //Show and Hide Previous Button
             if (pageResultSearch <= 100 || currentPageSizeSearch <= 100) {
                 $("button.prevButton").hide();
@@ -204,21 +204,21 @@ function getEverythingInfo(args) {
             }
         });
     }
-};
+}
 
 //Function for when source information changes
 function sourceChange(sel) {
-    
+
     //Get data from select field
     var writing = document.getElementById("checklist");
-    
+
     var source = [];
     var args = [];
-    
+
     if (sel.value == "many") {
         $('#selectModalTwo').modal('show');
         $(".modal-title").html("Choose Multiple Sources");
-        
+
         if (multiple.length == 0 && writing != null) {
             //Populates the Multiple Sources Modal with all the Publishers
             addPublisher(args, function(response) {
@@ -234,13 +234,13 @@ function sourceChange(sel) {
 
 //Adds a value to an array to see what checkboxes have been checked
 function checkBox(args) {
-    
+
     //To get the value of the checked box
     var result = args.value;
-    
+
     //To see if a box is checked
     var checked = args.checked;
-    
+
     //This deletes a checkbox entry if box is unclicked
     if (!checked) {
         for (var a = 0; a < multiple.length; a++) {
@@ -258,10 +258,10 @@ function checkBox(args) {
 
 //Previous Button
 function prevSearch() {
-    
+
     //This is where the current list of pages and the total amount of articles is displayed
     var pgResults = document.getElementById("totalResultsInfoSearch");
-    
+
     if (currentPageSearch > 1) {
         currentPageSearch--;
         var remainder = currentPageSizeSearch % 100;
@@ -271,9 +271,9 @@ function prevSearch() {
         else {
             currentPageSizeSearch = currentPageSizeSearch - 100;
         }
-        
+
         pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
-        
+
         //Search using pagination
         getEverythingInfo("navigation");
     }
@@ -281,15 +281,15 @@ function prevSearch() {
 
 //Next button
 function nextSearch() {
-    
+
     //This is where the current list of pages and the total amount of articles is displayed
     var pgResults = document.getElementById("totalResultsInfoSearch");
-    
+
     if ((pageResultSearch / 100 > 1) && (pageResultSearch > currentPageSizeSearch)) {
         currentPageSearch++;
         currentPageSizeSearch = currentPageSizeSearch + 100;
         pgResults.innerHTML = "<strong>Results: </strong>" + currentPageSizeSearch + " / " + pageResultSearch;
-        
+
         //Search using pagination
         getEverythingInfo("navigation");
         if (pageResultSearch - currentPageSizeSearch < 0) {
@@ -315,7 +315,7 @@ $(document).ready(function() {
     //Setting Page Defaults
     document.getElementById("adSearch").value = "";
     document.getElementById("output").innerHTML = `<h1 class="no-articles" align="center">Search For Articles</h1>`;
-   
+
     //Hiding the previous and next buttons
     $("button.nextButton").hide();
     $("button.prevButton").hide();

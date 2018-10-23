@@ -83,14 +83,14 @@ function getHeadlineInfo(args) {
         $(".menu-header").css("background-color", "#ffffff");
 
         var releases = [];
-        var params = new Array();
+        var params = [];
 
         //Setting search parameters from user input
-        params['country'] = country;
-        params['category'] = category;
-        params['sources'] = sources;
-        params['q'] = search;
-        params['page'] = currentPageHeadline;
+        params.country = country;
+        params.category = category;
+        params.sources = sources;
+        params.q = search;
+        params.page = currentPageHeadline;
 
         //Sending up search parameters to the api
         addHeadline(params, function(response) {
@@ -208,7 +208,7 @@ function getHeadlineInfo(args) {
 
         });
     }
-};
+}
 
 //Function for when source information changes
 function sourceChange(sel) {
